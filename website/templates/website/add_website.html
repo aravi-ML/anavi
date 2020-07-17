@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br />
+<br />
+<div class='container-sm row'>
+    <form class='add-website col-2 shadow-lg' action='website/add/perform'>
+        <input type="text" name="name" />
+        <br />
+
+        <input type="text" name="link" />
+        <br />
+
+        <button type="submit" class="btn">Ajouter </button>
+    </form>
+</div>
+
+{% endblock %}

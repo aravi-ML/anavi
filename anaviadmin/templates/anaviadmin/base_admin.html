@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <title>Administration</title>
+<link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
+<link rel='icon' type='image/png' href="{% static 'images/png/logo_anavi_bold.png' %}" />
+</head>
+<body>
+<nav class='navbar shadow-sm bg-white' style='padding-left:90px; padding-right:90px'>
+    <a class='navbar-brand'>menu</a>
+    <ul class='nav'>
+        <li class='nav-item'>
+            <a class='nav-link'>Not</a>
+        </li>
+    </ul>
+</nav>
+
+{% block content %}
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'anaviadmin/base_admin.html' %}
+
+{% block content %}
+
+    <div class='container stat-card'>
+        <div class='row'>
+            <div class='col-12 col-lg-2 text-center'>
+                <div class='card border-0 shadow'>
+                    <h3>{{ nb.comment }}</h3>
+                    Feedbacks
+                </div>
+            </div>
+
+            <div class='col-12 col-lg-2'>
+                <div class='card border-0 shadow'>
+                   <span class='align-middle'> <h3>{{ nb.hotel }}</h3>
+                    Hotels
+                    </span>
+                </div>
+            </div>
+
+            <div class='col-12 col-lg-2 text-center'>
+                <div class='card border-0 shadow'>
+                    <h3>{{ nb.expert }}</h3>
+                    Linguistes
+                </div>
+            </div>
+
+            <div class='col-12 col-lg-2 text-center'>
+                <div class='card border-0 shadow'>
+                    <h3>{{ nb.searcher }}</h3>
+                    Searchers
+                </div>
+            </div>
+
+            <div class='col-12 col-lg-2 text-center'>
+                <div class='card border-0 shadow'>
+                    <h3>{{ nb.website }}</h3>
+                    Websites
+                </div>
+            </div>
+
+            <div class='col-12 col-lg-2 text-center'>
+                <div class='card border-0 shadow'>
+                    <h3>{{ nb.user }}</h3>
+                    Users
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="313" height="105" viewBox="0 0 313 105">
+  <defs>
+    <filter id="navi" x="98" y="1" width="215" height="104" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="logo_anavi_blanc" transform="translate(-178 -28)">
+    <g transform="matrix(1, 0, 0, 1, 178, 28)" filter="url(#navi)">
+      <text id="navi-2" data-name="navi" transform="translate(107 75)" fill="#fff" font-size="70" font-family="MontserratAlternates-Bold, Montserrat Alternates" font-weight="700"><tspan x="0" y="0">NAVI</tspan></text>
+    </g>
+    <g id="Groupe_12" data-name="Groupe 12" transform="translate(178 28)">
+      <path id="Tracé_39" data-name="Tracé 39" d="M51.581,0A51.581,51.581,0,1,1,0,51.581,51.581,51.581,0,0,1,51.581,0Z" fill="#fff"/>
+      <path id="Tracé_40" data-name="Tracé 40" d="M38.912,0A38.912,38.912,0,1,1,0,38.912,38.912,38.912,0,0,1,38.912,0Z" transform="translate(14.479 12.669)" fill="#c73434"/>
+      <text id="A" transform="translate(39 67)" fill="#2d2b2b" font-size="42" font-family="MontserratAlternates-Bold, Montserrat Alternates" font-weight="700"><tspan x="0" y="0">A</tspan></text>
+      <line id="Ligne_1" data-name="Ligne 1" transform="translate(13.473 12.703)" fill="none" stroke="#707070" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class='container-fluid' style='padding-top:60px; padding-bottom:60px'>
+    
+    <div class=''>
+        Label data to help anavi up performance in her sentiment analyse
+    </div>
+
+    <form class=''>
+        <div class='input-group'>
+            <select name='type_of_comment' class='form-control'>
+                <option value="0">Not tagget</option>
+                <option value="1">Not tagget by me</option>
+                <option value="2">Tagget data</option>
+                <option value="3">Taget by me</option>
+            </select>
+        </div>
+        <br />
+        <br />
+        <table class='table table-bordered shadow' id="comment_list">
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>P</th>
+                    <th>N</th>
+                    <th>Ne</th>
+                    <th>Aspects</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                {% for comment in  comment_list %}
+
+                    <tr>
+                        <td>{{ comment.text }}</td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ forloop.counter }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                
+                {% endfor %}
+            
+            </tbody>
+        </table>
+    </form>
+  </div>
+<script type='text/javascript'>
+    $(function(e){
+        $("#comment_list tbody tr").eq(7).addClass("shadow-lg")
+    });
+</script>
+
+{% endblock content %}

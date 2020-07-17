@@ -1,0 +1,49 @@
+/*.montserrat,.montserrat *{
+    font-family: 'Montserrat',sans-serif !important;
+}
+.jura,.jura *{
+    font-family: 'Jura',sans-serif !important;
+}*/
+
+h1, h2, h3, h4, h5, h6, .worksans, .worksans * {
+    font-family: 'Work Sans', sans-serif !important;
+}
+
+.main-color {
+    background-color: #060d3b;
+    background-color: rgb(6, 13, 59);
+}
+
+.second-color {
+    background-color: #c73434;
+    background-color: rgb(199, 52, 52);
+}
+
+.second-color-text, .second-color-text a, .second-color-text.navbar-nav .nav-link {
+    color: rgb(199, 52, 52);
+}
+
+.main-color-text, .main-color-text a, .main-color-text.navbar-nav .nav-link {
+    color: #060d3b;
+}
+
+.third-color {
+    background-color: #a1a1a1;
+    background-color: rgb(161, 161, 161);
+}
+
+.stat-card .row .card {
+    height: 150px;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 25%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#comment_list tbody tr{
+    display:table-row;
+    width: 100% !important;
+    margin-top: 93px !important;
+    margin-bottom: 94px !important;
+}

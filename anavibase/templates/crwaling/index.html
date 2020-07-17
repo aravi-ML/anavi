@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br />
+    <br />
+    <br />
+    <center>
+      <h1>Choose the site wehre you want to crwal</h1>
+    </center>
+  
+    <form class="" action="{% url 'crwal_from_website' 'hotel' %}" method="post">
+    {% csrf_token %}
+        <center>
+            <button type="submit" class='btn-lg second-color'>hotels.com</button>
+        </center>
+    </form>
+      <br />
+    <br />
+    <br />
+      <br />
+    <br />
+    <br />
+      <br />
+    <br />
+    <br />
+{% endblock %}

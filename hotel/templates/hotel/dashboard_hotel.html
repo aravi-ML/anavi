@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br />
+<div class='container stat-card'>
+    <div class='row'>
+        <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
+            <div class="card border-0 shadow">
+                <h3>{{ nb_comment }}</h3>
+                Feed backs
+            </div>
+        </div>
+
+        {% if web %}
+        <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
+            <div class="card border-0 shadow">
+                <h3>{{ web.nb }}</h3>
+                Feedbacks on <a href="{{ web.website.link }}">{{web.website.name }}</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

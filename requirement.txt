@@ -1,0 +1,6 @@
+dateparser
+selenium et chrome driver
+lxml
+re
+xvfbwrapper
+datetimei
