@@ -4,7 +4,7 @@ Aspect based sentiment analysis
 # how to work with branch?
 
 Lorsque tu clones le projet si la branche **develop** n'est pas encore presente tu la crees ensuite tu
-crees la branche **modele_develop** ou **interfaces_develop** dependament de la ou tu te trouves
+crees la branche **modele_develop** ou **interfaces_develop** dependament de l'équipe dans laquelle tu te trouves
 Une fois **modele_develop** ou **interfaces_develop** cree, tu te replace dans l'une des deux branches et tu crees 
 une branche portant ton nom **apache** pour apache ou **aurelle** pour aurelle par exemple.
 
