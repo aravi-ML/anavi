@@ -1,0 +1,2 @@
+bad_string=['\ude05','\ude0a','\udffeLa','\ud83c','\udffe','\udffe','\udffe','\udffe','\udffd','\udffd','\u2640','\ufe0f',
+'\ude0c','\ude09','\ude1c','\udffd','\udc4f','\ude0c','\ude42','\ude31','\udcaa','\udfff','\ude12','\ude0f','\ude23','\ude31','\uddf2']

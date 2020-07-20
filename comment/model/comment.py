@@ -6,6 +6,9 @@ from website.model.website import *
 class Comment(models.Model):
     """ represent the comment of the structure on the website"""
     text = models.TextField()
+    text_fr=models.TextField(null=True,blank=True)
+    text_en=models.TextField(null=True,blank=True)
+    text_lang=models.CharField(null=True,blank=True,max_length=10)
     state = models.BooleanField(default=False)
     add_date = models.DateTimeField(null=True,blank=True)
     hotel = models.ForeignKey(Hotel, blank=True, on_delete=models.SET_NULL,null=True)

@@ -5,8 +5,8 @@ from anaviuser.model.user import *
 
 class Hotel(models.Model):
     """represent the structure of a manager"""
-    name = models.CharField(max_length=100)
-    place= models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
+    place= models.CharField(max_length=255)
     state = models.BooleanField(default=False)
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE,null=True,blank=True)
     #user=models.ForeignKey(User,on_delete=models.SET_NULL, null=True)

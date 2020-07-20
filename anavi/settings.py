@@ -84,7 +84,21 @@ WSGI_APPLICATION = 'anavi.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'dev': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':"anavi_dev",
+        "USER":"protogons",
+        "PASSWORD":"lareference",
+        "HOST":"127.0.0.1"
+    },
+    'production': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':"anavi",
+        "USER":"protogons",
+        "PASSWORD":"lareference",
+        "HOST":"127.0.0.1"
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }

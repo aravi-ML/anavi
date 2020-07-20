@@ -2,7 +2,6 @@ from django.core.paginator import Paginator
 from .model.comment import *
 
 class CommentService:
-    
     def if_exist(self,comment):
         comment_list=Comment.objects.filter(text__iexact=comment.text,hotel=comment.hotel,website=comment.website,add_date=comment.add_date)
         lenght=len(comment_list)

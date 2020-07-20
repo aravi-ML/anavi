@@ -1,6 +1,11 @@
-dateparser
-selenium et chrome driver
-lxml
-re
-xvfbwrapper
-datetimei
+pip install dateparser
+pip install selenium 
+et chrome driver
+pip install lxml
+pip install re
+pip install xvfbwrapper
+datetime
+pip install demoji
+pip install langdetect
+pip install translate-api
+pip install translators --upgrade
