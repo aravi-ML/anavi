@@ -11,7 +11,6 @@ import csv
 import dateparser
 import datetime
 import random
-
 def synchronize_booking():
     website=WebSite(name="Booking",link="https://www.bookings.com")
     website=WebSiteService().add(website)["website"]

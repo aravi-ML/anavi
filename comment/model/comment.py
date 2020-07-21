@@ -3,8 +3,10 @@ from django.contrib import admin
 from hotel.model.hotel import Hotel,HotelAdmin
 from django.db.models import Q
 from website.model.website import *
+from anavibase.model.positive_big_int import *
 class Comment(models.Model):
     """ represent the comment of the structure on the website"""
+    id=PositiveAutoBigInt(primary_key=True)
     text = models.TextField()
     text_fr=models.TextField(null=True,blank=True)
     text_en=models.TextField(null=True,blank=True)

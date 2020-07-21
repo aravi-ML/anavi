@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'anavi.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'dev': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':"anavi_dev",
         "USER":"protogons",
