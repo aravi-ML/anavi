@@ -4,6 +4,8 @@ from hotel.model.hotel import Hotel,HotelAdmin
 from django.db.models import Q
 from website.model.website import *
 from anavibase.model.positive_big_int import *
+import json
+
 class Comment(models.Model):
     """ represent the comment of the structure on the website"""
     id=PositiveAutoBigInt(primary_key=True)
@@ -29,11 +31,14 @@ class Comment(models.Model):
     def if_exist(self):
         comment_list=Comment.objects.filter(text__iexact=self.text,hotel=self.hotel,website=self.website,add_date=self.add_date)
         lenght=len(comment_list)
-        print("la taille est "+str(length))
+        print("la taille est "+str(lenght))
         if(lenght>0):
             return True
         else:
             return False
+    
+    def find_aspect_en(self):
+        return self.aspecten_set.all()
 
 class CommentAdmin(admin.ModelAdmin):
     fields=['text','hotel','website','state']

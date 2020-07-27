@@ -4,6 +4,7 @@ from django.db import models
 from .model.comment import *
 from .model.expert_comment import *
 from .model.aspect import *
+from .model.aspect_en import AspectEn
 from .model.polarity import *
 from .model.aspect_polarity import *
 # Create your models here.

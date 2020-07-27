@@ -196,14 +196,18 @@ class CommentService:
 
     ##defintion des fonctions de postagging
     def post_tag_tofrench_all(self):
-        comments=Comment.objects.exclude(Q(text=None)|Q(text=""),Q(text_lang=None))
+        comment_list=[]
+        comments=Comment.objects.exclude(Q(text=None)|Q(text="")|Q(text_lang=None)).filter(id__gt=14294)
         for comment in comments:
             all_tag=requests.post('http://[::]:9000/?properties={"annotators":"tokenize,ssplit,pos", "tokenize.language":"fr","outputFormat":"json"}', data ={'data':comment.text_fr}).text
             all_tag_json=json.loads(all_tag)
-            if(all_tag_json["sentences"][0]["tokens"][0]["word"]=="data"):
-                all_tag_json["sentences"][0]["tokens"].pop(0)
-            if(all_tag_json["sentences"][0]["tokens"][0]["word"]=="="):
+            try:
+                if(all_tag_json["sentences"][0]["tokens"][0]["word"]=="data"):
                     all_tag_json["sentences"][0]["tokens"].pop(0)
+                if(all_tag_json["sentences"][0]["tokens"][0]["word"]=="="):
+                    all_tag_json["sentences"][0]["tokens"].pop(0)
+            except:
+                comment_list.append(comment.id)
             i=0
             for sentence in all_tag_json["sentences"]:
                 #on parcours les differens tokens et on recupere les 
@@ -213,5 +217,42 @@ class CommentService:
                     if(tags["pos"]=="NOUN"):
                         an_aspect=True
                         aspect=Aspect(name_fr=tags["word"],start_to=tags["characterOffsetBegin"]-5,end_to=tags["characterOffsetEnd"]-5,comment=comment,sentence_index=i)
-                        aspect.save()
+                        try:
+                            aspect.save()
+                        except:
+                            comment_list.append({"text":tags["word"],"id":comment.id})
+                            return comment_list
+
                 i=i+1
+        return comment_list
+    
+    def posttag_english(self):
+        comments=Comment.objects.exclude(Q(text=None)|Q(text="")|Q(text_lang=None)).filter(id__gte=16606)
+        comment_list=[]
+        for comment in comments:
+            all_tag=requests.post('http://[::]:9000/?properties={"annotators":"tokenize,ssplit,pos", "tokenize.language":"fr","outputFormat":"json"}', data ={'data':comment.text_en}).text
+            all_tag_json=json.loads(all_tag)
+            try:
+                if(all_tag_json["sentences"][0]["tokens"][0]["word"]=="data"):
+                    all_tag_json["sentences"][0]["tokens"].pop(0)
+                if(all_tag_json["sentences"][0]["tokens"][0]["word"]=="="):
+                    all_tag_json["sentences"][0]["tokens"].pop(0)
+            except:
+                comment_list.append(comment.id)
+            i=0
+            for sentence in all_tag_json["sentences"]:
+                #on parcours les differens tokens et on recupere les 
+                #differents pos==NN ou pos==NNS
+                an_aspect=False
+                for tags in sentence["tokens"]:
+                    if(tags["pos"]=="NN"):
+                        an_aspect=True
+                        aspect=AspectEn(name_en=tags["word"],start_to=tags["characterOffsetBegin"]-5,end_to=tags["characterOffsetEnd"]-5,comment=comment,sentence_index=i)
+                        try:
+                            aspect.save()
+                        except Exception as e:
+                            comment_list.append({"text":tags["word"],"id":comment.id,"msg":str(e)})
+                            return comment_list
+
+                i=i+1
+        return comment_list

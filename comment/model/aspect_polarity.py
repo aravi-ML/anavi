@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from .aspect import Aspect
+from .aspect_en import AspectEn
 from .polarity import Polarity
 from anaviexpert.model.expert import Expert
 from anavibase.model.positive_big_int import *
@@ -9,7 +10,8 @@ class AspectPolarity(models.Model):
         For example user can take some aspect and gave positive or negative or neutral
     """
     id=PositiveAutoBigInt(primary_key=True)
-    aspect=models.ForeignKey(Aspect,on_delete=models.CASCADE)
+    aspect=models.ForeignKey(Aspect,on_delete=models.CASCADE,null=True,blank=True)
+    aspecten=models.ForeignKey(AspectEn,on_delete=models.CASCADE,null=True,blank=True)
     polarity=models.ForeignKey(Polarity,on_delete=models.CASCADE)
     expert=models.ForeignKey(Expert,on_delete=models.SET_NULL,null=True,blank=True)
     add_date=models.DateTimeField(auto_now=True)

@@ -2,55 +2,92 @@
 {% load static %}
 
 {% block content %}
-
-  <div class='container-fluid' style='padding-top:60px; padding-bottom:60px'>
+<script type="text/javascript" src="{% static 'anavicomment/js/tag_comment.js' %}"></script>
+  <div class='container' style='padding-top:60px; padding-bottom:60px'>
     
     <div class=''>
         Label data to help anavi up performance in her sentiment analyse
     </div>
 
-    <form class=''>
+    <form class='' action="{% url 'comment:performtagcomment' %}" id="form-tag-comment">
+    {% csrf_token %}
         <div class='input-group'>
             <select name='type_of_comment' class='form-control'>
-                <option value="0">Not tagget</option>
-                <option value="1">Not tagget by me</option>
-                <option value="2">Tagget data</option>
-                <option value="3">Taget by me</option>
+                <option value="0">Not tagged</option>
+                <option value="1">Not tagged by me</option>
+                <option value="2">Tagged data</option>
+                <option value="3">Tagged by me</option>
             </select>
         </div>
         <br />
         <br />
         <table class='table table-bordered shadow' id="comment_list">
             <thead>
-                <tr>
+                <tr align="center">
+                    <th class="d-none"></th>
                     <th>Comment</th>
-                    <th>P</th>
-                    <th>N</th>
-                    <th>Ne</th>
+                    <th style="width:12px" title="positive">P</th>
+                    <th style="width:12px" title="negatif">N</th>
+                    <th style="width:12px" title="neutral">Ne</th>
                     <th>Aspects</th>
+                    <th>Tagg</th>
                 </tr>
             </thead>
             <tbody>
             
                 {% for comment in  comment_list %}
-
+                    <script type="text/javascript">
+                        comments["comment_{{ comment.id }}"]=new Comment();
+                        comments["comment_{{ comment.id }}"].id="{{ comment.id }}";
+                    </script>
                     <tr>
-                        <td>{{ comment.text_en }}</td>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ forloop.counter }}</td>
-                        <td></td>
-                        <td></td>
+                        <td class="d-none"><input type="text" value="{{comment.id}}" comment-id="{{comment.id }}" class="comment form-control" /></td>
+                        <td style="width:600px !important" valign="center">{{ comment.text_en }}</td>
+                        <td><input type="radio" class="form-control-lg comment-polarity" comment-id="{{comment.id}}" name="comment_polarity_{{forloop.counter}}" value="positive" title="positive" /></td>
+                        <td><input type="radio" class="form-control-lg comment-polarity" comment-id="{{comment.id}}" name="comment_polarity_{{forloop.counter}}" value="negatif" title="negatif" /></td>
+                        <td><input type="radio" class="form-control-lg comment-polarity" comment-id="{{comment.id}}" name="comment_polarity_{{forloop.counter}}" value="neutral" title="neutral" /></td>
+                        <td>
+                            <table class="table-bordered">
+                                
+                            </table>
+                            <ul class="list-unstyled">
+                                {% for aspect in comment.find_aspect_en %}
+                                    <script type="text/javascript">
+                                        aspect=new AspectComment();
+                                        aspect.id="{{ aspect.id}}";
+                                        aspect.text="{{ aspect.name_en }}";
+                                        aspect.comment="{{ comment.id }}";
+                                        comments["comment_{{comment.id }}"].aspects.push(aspect)
+                                    </script>
+
+                                    <li>
+                                    <div  class="row">
+                                        <div class='col-3'>{{ aspect.name_en }}</div>
+                                        <div class='col-3'><input type="radio" class="aspect-polarity" comment-id="{{ comment.id }}" aspect-text="{{ aspect.name_en }}" aspect-id="{{ aspect.id }}" name="aspect_{{aspect.id}}" value="positive" title="positive" /> P</div>
+                                        <div class='col-3'><input type="radio" class="aspect-polarity" comment-id="{{ comment.id }}" aspect-text="{{ aspect.name_en }}" aspect-id="{{ aspect.id }}" name="aspect_{{aspect.id}}" value="negatif" title="negatif" /> N</div>
+                                        <div class='col-3'><input type="radio" class="aspect-polarity"  comment-id="{{ comment.id }}" aspect-text="{{ aspect.name_en }}" aspect-id="{{ aspect.id }}" name="aspect_{{aspect.id}}" value="neutral" title="neutral" /> Ne</div>
+                                    </div>
+                                    
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-sm btn-info tag-one-comment" comment-id="{{ comment.id }}" title="tag current comment">tagg</button>
+                        </td>
                     </tr>
                 
                 {% endfor %}
             
             </tbody>
         </table>
+        <button type="submit" class="btn main-color shadow-lg">Etiquetter</button>
     </form>
   </div>
 <script type='text/javascript'>
     $(function(e){
         $("#comment_list tbody tr").eq(7).addClass("shadow-lg")
+        //console.log(comments)
     });
 </script>
 
