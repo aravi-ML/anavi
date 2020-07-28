@@ -31,7 +31,6 @@ h1, h2, h3, h4, h5, h6, .worksans, .worksans * {
     background-color: #a1a1a1;
     background-color: rgb(161, 161, 161);
 }
-
 .stat-card .row .card {
     height: 150px;
     vertical-align: middle;
@@ -40,10 +39,92 @@ h1, h2, h3, h4, h5, h6, .worksans, .worksans * {
     margin-top: 25px;
     margin-bottom: 25px;
 }
+::placeholder{
+    color: #BaB3B3 !important;
+    color : rgba(186,179,179,0.7) !important;
+}
 
-#comment_list tbody tr{
-    display:table-row;
-    width: 100% !important;
-    margin-top: 93px !important;
-    margin-bottom: 94px !important;
+input:focus{
+    border-top: 0px ;
+    border-left: 0px ;
+    border-right: 0px ;
+    border-bottom: 2px ;
+    border-bottom-color:#060d3b;
+    
+}
+
+.title-text {
+    text-align: justify;
+    text-decoration: white;
+    text-shadow: #060d3b;
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 10px;
+    
+}
+.next:hover{
+ background-color: #060d3b;
+}
+.border-right-none{
+    border-right-width: 0px;
+}
+.border-left-none
+{
+    border-left-width: 0px;
+}
+.already:hover{
+    color: #c73434 ;
+
+}
+
+@media(min-width:768px)
+{
+    .logo_blanc{
+      margin-top: 0px;
+      top: 0px;
+      
+    }
+    .row
+    {
+      margin-top: 20px;
+    }
+    .white-part
+    {
+        top: 0px;
+    }
+    body
+    {
+     width: 100%;
+    }
+
+}
+.inputLogin {
+    
+    padding-left: 3rem;
+    border-left: 1px solid rgb(206, 212, 218) !important;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+    transition: 0.2s ease-in border;
+}
+.inputLogin:focus {
+    box-shadow: none !important;
+    border-bottom: 1px solid #060d3bb3;
+    border-left: none !important;
+    /* border-top-left-radius: 4px !important; */
+    border-radius: 0px !important;
+}
+.iconLogin {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    color: #060d3b;
+}
+.inputloginGroup{
+    position: relative;
+}
+.yoyo {
+    margin-top: -2rem;
+    margin-left: -3.2rem;
+    transform: rotate(14deg);
 }

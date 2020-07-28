@@ -1,0 +1,27 @@
+{% extends "base-user.html" %}
+{% load static%}
+
+{% block content %}
+
+<form style="margin-top: 30px;" action="{% url 'anaviuser:Reinitialize' %}">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend " style="border-right-width: 0px;" >
+      <i class="fa fa-at main-color-text input-group-text bg-white "  id="inputGroup-sizing-default" style="border-right-width: 0px;"></i>   
+    </div>
+    <input type='text'  name='mail' id='mail' placeholder="Enter your email" class='form-control' style="border-left-width: 0px;"  />
+  </div>
+  <div class="row">
+      <div class="col-lg-8">
+
+      </div>
+      <div class="col-lg-4">
+          <button type='submit' class='btn second-color text-white container'>Next</button>
+
+      </div>
+      
+  </div>
+
+</form>
+
+{% endblock content %}
+

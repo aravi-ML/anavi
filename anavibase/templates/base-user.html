@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+
+
+    <style type="text/css">
+       body{
+        background-image: url("{% static 'images/emotion_bg.jpg' %}");
+        background-size: cover;
+        padding-top:none !important;
+      }
+      .cover-all{
+        height:920px;
+        background-color: rgb(6,13,59,0.8);
+      }
+    
+    
+    </style>
+    <body>
+        <div class="cover-all container-fluid text-white" >
+          <br />
+          <br />
+          <br />
+          <div class="row" style="margin-top: 105px;">
+            <div class="col-lg-1">
+              
+            </div> 
+            <div class="col-lg-5">
+                    <br />
+                    <img class = "logo_blanc" src="{% static 'images/logo/logo_anavi_blanc_2.png' %}" style="margin-top: 15px;" />
+                    
+                    <div class="col-lg-2">
+
+                    </div> 
+                    <div class="col-lg-3">
+                      <img class = "yoyo" src="{% static 'images/semi_yoyo.png' %}"  style='position:relative;top: 0px;  width: 320px;' />
+                    </div> 
+                    
+            </div> 
+            <div class="col-lg-5 bg-white text-dark rounded-sm shadow-lg white-part">
+              <div class="text-center">
+                <img src="{% static 'images/logo/logo_anavi_bold.png' %}" style='position: relative; margin: 15px; width: 70px;'/>
+             </div> 
+             <h3 class="main-color-text"> {{reset}}</h3>
+             <br />
+            {% block content %}
+
+            {% endblock content %}
+            
+            
+             
+             
+
+            </div>
+            <div class="col-lg-1">
+
+            </div>
+
+          </div>  
+
+        </div>
+
+    </body>
+</html>
