@@ -6,12 +6,24 @@ class User(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     password = models.CharField(max_length=200)
-    state = models.BooleanField(default=False)
+    state = models.BooleanField(default=True)
     add_date = models.DateTimeField(auto_now_add=True)
     phone = models.IntegerField(null=True)
+    confirm_code=models.PositiveIntegerField(default=0)
+    confirmed=models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.name+" "+self.last_name+"("+str(self.pk)+")"
+    
+    def to_dict(self):
+        return {
+            "name":self.name,
+            "phone":self.phone,
+            "email":self.email,
+            "id":self.id,
+            "state":self.state
+        }
 
 class UserAdmin(admin.ModelAdmin):
     list_display=['name','name','last_name','phone']
