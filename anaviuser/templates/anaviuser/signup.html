@@ -1,10 +1,118 @@
- {% extends "base.html" %}
+ {% load static %}
 
- {% block content %}
+<!doctype html>
+<html>
+   <head>
+      <title>Sign up</title>
+        <link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <form action="user/perform_signup">
-    {% csrf_token %}
+   </head>
+   <style type="text/css">
+    body{
+        background-image: url("{% static 'images/emotion_bg.jpg' %}");
+        background-size: cover;
+        padding-top:none !important;
+    }
+    .cover-all{
+        height:920px;
+        background-color: rgb(6,13,59,0.8);
+    }
+   
+   </style>
+   <body>
+      <div class="cover-all container-fluid text-white">
+         <br/>
+         <br/>
+         <div class = "row " style="margin-top: 80px;">
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-5">
+               <br/>
+               <br/>
+               <span class="text-center text-white title-text"> Join ANAVI and understand the emotion</span>
+               <br/>
+               <br/>
+               <br/>
+               <img src="{% static 'images/logo/logo_anavi_blanc_2.png' %}" style="margin-top: 20px; width: 200px;"/>
+              
+            </div> 
     
-    </form>
 
- {% endblock %}
+            <div class="col-lg-5 bg-white text-dark rounded-sm shadow-lg white-part">
+               <!-- insert the first logo-->
+               <div class="container">
+                  <div class="text-center">
+                     <img src="{% static 'images/logo/logo_anavi_bold.png' %}"style='position: relative; margin: 15px; width: 70px;'/>
+                  </div>
+                  <br/>
+                <!-- insert the first title-->  
+                  <h3 class="main-color-text ">Sign up now</h3>
+                  <form action="user/perform_signup" style="margin-top:10px">
+                     
+                     
+                     <div class="input-group mb-3 inputloginGroup">
+                        
+                        <i class="fa fa-address-book-o iconLogin"  id="inputGroup-sizing-default" ></i>
+                        <input  type='text' name='name' id='name' placeholder="Enter name and first-name" class='form-control inputLogin'   />
+                      </div>
+                     <div class="input-group mb-3 inputloginGroup">
+                        <i class="fa fa-at iconLogin "  id="inputGroup-sizing-default" ></i>
+                        <input type='text' name='mail' id='mail' placeholder="Enter your mail" class='form-control inputLogin'   />
+                     </div>
+                     <div class="input-group mb-3 inputloginGroup">
+                        
+                        <i class="fa fa-lock iconLogin "  id="inputGroup-sizing-default" ></i>
+                        <input type='password' name='password' id='password' placeholder="password" class='form-control inputLogin'   />
+                     </div>
+                     <div class="input-group mb-3 inputloginGroup">
+                    
+                        <i class="fa fa-lock iconLogin"  id="inputGroup-sizing-default" ></i>
+                        <input type='password' name='c-password' id='c-password' placeholder="confirm password" class='form-control inputLogin'   />
+                      </div>
+                      <br/>
+                     <div class="row">
+                        <div class='col-lg-5 '>
+                           <button type='submit' class='btn second-color text-white container'>Sign Up</button>
+                       </div>
+                       <div class='col-lg-5 '>
+                       </div>
+                       <div class='col-lg-1 '>
+                       </div>
+                       <br/>
+
+                     </div>
+                     
+                        <div  class="col-lg-5" >
+                            <a href='/user/login' class='text-center main-color-text  container already' >Already have an account</a>
+                        </div>
+                        
+                        <div class='col-lg-7 '>
+                        </div>
+                     <div class="row">
+
+                     </div >
+
+                     
+                  </form >
+
+                  
+
+               </div>
+
+            </div>
+            <div class="col-lg-1">
+
+            </div>
+
+         </div>
+      </div>
+   </body>
+
+</html>
+
+ 
+
+ 
