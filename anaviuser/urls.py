@@ -5,6 +5,7 @@ from . import views,user_api
 app_name= "anaviuser"
 urlpatterns = [
     path('login',views.login,name="login"),
+    path("performlogin",user_api.login,name="plogin"),
     path('signup',views.signup, name="signup"),
     path('reinitialiser_pwd', views.reinitialiser,name="reinitialize"),
     path('reinitialize_mail',views.reinitialise_mail,name="reinitialze_mail"),

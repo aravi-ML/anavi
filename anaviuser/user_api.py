@@ -6,7 +6,7 @@ def login(request):
     user_login=request.POST["email"]
     user_password=request.POST["password"]
 
-    user=User(email=user_login,password=user_password)
+    user=User(email=user_login,phone=user_login,password=user_password)
     user_service=UserService()
     state_authenticated=user_service.authenticate(user)
     if(state_authenticated["status"]==True):

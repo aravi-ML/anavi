@@ -9,6 +9,7 @@ __pycache__/
 
 # Distribution / packaging
 migrations/*
+*/migrations/
 .Python
 build/
 develop-eggs/

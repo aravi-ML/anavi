@@ -8,7 +8,7 @@ class ContactService:
     
     def add_email(self,email):
         response={"status":False,"email":None,"error":False}
-        email_exist=Email.objects.filter(email=email.email)
+        email_exist=Emails.objects.filter(email=email.email)
         if(len(email_exist)==0):
             try:
                 email=email.save()
@@ -19,7 +19,7 @@ class ContactService:
     
     def add_phone(self,phone):
         response={"status":False,"phone":None,"error":False}
-        phone_exist=Email.objects.filter(phone__ie=phone.phone)
+        phone_exist=Phones.objects.filter(phone__ie=phone.phone)
         if(len(phone_exist)==0):
             try:
                 phone=phone.save()

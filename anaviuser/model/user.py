@@ -8,7 +8,7 @@ class User(models.Model):
     password = models.CharField(max_length=200)
     state = models.BooleanField(default=True)
     add_date = models.DateTimeField(auto_now_add=True)
-    phone = models.IntegerField(null=True)
+    phone = models.CharField(null=True,blank=True,max_length=25)
     confirm_code=models.PositiveIntegerField(default=0)
     confirmed=models.BooleanField(default=False)
 

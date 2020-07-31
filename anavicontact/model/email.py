@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from anaviuser.models import *
-class Email(models.Model):
+class Emails(models.Model):
     email=models.CharField(max_length=200)
     state=models.BooleanField(default=True)
     add_date=models.DateTimeField(auto_now=True)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from anaviuser.models import *
-class Phone(models.Model):
+class Phones(models.Model):
     phone=models.CharField(max_length=23)
     country_code=models.CharField(max_length=8)
     add_date=models.DateTimeField(auto_now=True)
