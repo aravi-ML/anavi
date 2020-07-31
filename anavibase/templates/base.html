@@ -7,13 +7,7 @@
 <meta property="og:image" content="{% static 'images/png/logo_anavi_main.png' %}" />
 <meta property="og:type" content="website" />
 <title>{{ title }}</title>
-<link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
-<link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
-<link rel='icon' type='image/png' href="{% static 'images/png/logo_anavi_bold.png' %}" />
-<script type='text/javascript' src="{% static 'js/librairies/jquery-3.5.1.min.js' %}"></script>
-<script type='text/javascript' src="{% static 'js/librairies/popper.min.js' %}"></script>
-<script type='text/javascript' src="{% static 'js/anavi.js' %}"></script>
-<script type='text/javascript' src="{% static 'js/librairies/bootstrap.min.js' %}"></script>
+{% include "base_css.html" %}
 </head>
 <body>
   <nav class="navbar fixed-top   bg-white shadow jura">
@@ -32,7 +26,7 @@
                 <a class="nav-link" href="">Contact us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Connection</a>
+                <a class="nav-link" href="{% url 'anaviuser:login' %}">Connection</a>
             </li>
             <li class="nav-item">
               <a class="nav-link second-color text-white rounded-pill shadow" style="width: 150px; text-align: center;" href="">Register</a>

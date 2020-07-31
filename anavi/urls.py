@@ -10,6 +10,7 @@ urlpatterns = [
     path("linguist/",include("anaviexpert.urls")),
     path("comment/",include("comment.urls")),
     path('',views.index,name='home_page'),
+    path("error/",include("anavibase.urls")),
     path('djangoadmin/', admin.site.urls),
 
 ]
