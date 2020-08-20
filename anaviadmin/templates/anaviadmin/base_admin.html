@@ -3,16 +3,23 @@
 <html>
 <head>
     <title>Administration</title>
+    {% include "base_css.html" %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
 <link rel='icon' type='image/png' href="{% static 'images/png/logo_anavi_bold.png' %}" />
+
+<script type="text/javascript" src="{% static 'anaviadmin/js/anavi_admin.js' %}"></script>
+
 </head>
 <body>
-<nav class='navbar shadow-sm bg-white' style='padding-left:90px; padding-right:90px'>
-    <a class='navbar-brand'>menu</a>
+<nav class='navbar shadow border-bottom  bg-white' style='padding-left:90px; padding-right:90px; height:100px;'>
+    <a class='navbar-brand' href="{% url 'anaviadmin:dashboard' %}">menu</a>
     <ul class='nav'>
         <li class='nav-item'>
-            <a class='nav-link'>Not</a>
+            <a class='nav-link' href="">Not</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'anaviadmin:download' %}">Download data</a>
         </li>
     </ul>
 </nav>

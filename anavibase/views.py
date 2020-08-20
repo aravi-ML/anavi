@@ -13,3 +13,7 @@ def error_500(request):
 def email_sended(request):
     context={"data":{"name":"ANAVI","code":989838}}
     return render(request,"emails/email_confirm_code.html",context)
+
+
+def team(request):
+    return render(request,"about/about.html")

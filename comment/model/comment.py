@@ -18,13 +18,19 @@ class Comment(models.Model):
     hotel = models.ForeignKey(Hotel, blank=True, on_delete=models.SET_NULL,null=True)
     website = models.ForeignKey(WebSite, blank=True, on_delete=models.SET_NULL,null=True)
 
-    @property
+  
     def to_dict(self):
         return {
-            'comment': json.load(self.text),
-            'date': self.date,
+            'orginal': self.text,
+            'fr':self.text_fr,
+            "en":self.text_en,
+            "lang":self.text_lang,
+            'date': str(self.add_date),
             'hotel':self.hotel.name
         }
+    
+    def to_json_string(self):
+        return '{\n  \t\t\t"original":"'+self.text+'",\n \t\t\t "fr":"'+self.text_fr+'",\n \t\t\t "en":"'+self.text_en+'",\n \t\t\t "lang":"'+self.text_lang+'"\n\t\t}'
     
     def __str__(self):
         return self.text+"("+str(self.id)+")"

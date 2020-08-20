@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<h1>Notre team</h1>
+<div class="row">
+    <div class="col-3">
+        <div class="card shadow-lg border-0">
+            <div class="card-img">
+                <img src="{% static 'images/team/apache.jpg' %}" width="100%"  />
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                Franklin Dongmo(Apache)
+            </div>
+            
+            <br />
+            <br />
+        </div>
+    </div>
+    <!--aurelle-->
+        <div class="col-3">
+        <div class="card shadow-lg border-0">
+            <div class="card-img">
+                <img src="{% static 'images/team/aurelle1.jpg' %}" width="100%"  />
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                Aurelle Youego(Le modele)
+            </div>
+            
+            <br />
+            <br />
+        </div>
+    </div>
+
+    <!--Audrey-->
+
+        <div class="col-3">
+        <div class="card shadow-lg border-0">
+            <div class="card-img">
+                <img src="{% static 'images/team/audrey1.jpg' %}" width="100%"  />
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                Audrey Dongmo(Django)
+            </div>
+            
+            <br />
+            <br />
+        </div>
+    </div>
+
+    <!-- Laure -->
+    <div class="col-3">
+        <div class="card shadow-lg border-0">
+            <div class="card-img">
+                <img src="{% static 'images/team/laure1.jpg' %}" width="100%"  />
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                Laure Fokou(Selenium)
+            </div>
+            
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+</div>
+<br />
+<br />
+{% endblock content %}

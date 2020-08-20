@@ -3,10 +3,14 @@
 <html>
     <head>
         <title>Login</title>
-        <link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
-        <link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
+        {% include "base_css.html" %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <!-- <link rel="stylesheet" type='text/css' href="{% static 'css/librairies/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type='text/css' href="{% static 'css/anavi.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        -->
     </head>
 
 <style type="text/css">
@@ -52,7 +56,7 @@
                        <div class = ""> 
                         <h3 class='main-color-text ' style="margin: 10px;">Sign In</h3>
                        </div>
-                        <form style="margin-top: 30px;" action="{% url 'anaviuser:plogin' %}" method="post">
+                        <form style="margin-top: 30px;" action="{% url 'anaviuser:plogin' %}" method="post" id="formlogin">
                                 {% csrf_token %}
                             <div class="input-group mb-3 inputloginGroup">
                               <!-- <div class="input-group-prepend " style="border-right-width: 0px;" id="testFocus" >

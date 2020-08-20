@@ -3,13 +3,12 @@ from anaviuser.model.user import User
 from anaviuser.user_service import UserService
 
 def login(request):
-    user_login=request.POST["email"]
-    user_password=request.POST["password"]
+    user_login=request.POST.get("email","").strip()
+    user_password=request.POST.get("password","").strip()
 
     user=User(email=user_login,phone=user_login,password=user_password)
-    user_service=UserService()
-    state_authenticated=user_service.authenticate(user)
+    UserService.authenticate(user)
     if(state_authenticated["status"]==True):
-        request.session["user"]=state_authenticated["user"].to_dict()
+        request.session["user"]=state_authenticated["user"]
         
     return JsonResponse(state_authenticated)
