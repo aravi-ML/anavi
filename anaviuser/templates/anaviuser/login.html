@@ -2,6 +2,10 @@
 <!doctype html>
 <html>
     <head>
+        <script type="text/javascript">
+            var home_url="{% url 'home_page' %}"
+            console.log(home_url)
+          </script>
         <title>Login</title>
         {% include "base_css.html" %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -56,7 +60,7 @@
                        <div class = ""> 
                         <h3 class='main-color-text ' style="margin: 10px;">Sign In</h3>
                        </div>
-                        <form style="margin-top: 30px;" action="{% url 'anaviuser:plogin' %}" method="post" id="formlogin">
+                        <form style="margin-top: 30px;" action="{% url 'anaviuser:plogin' %}" method="post" id="form-login">
                                 {% csrf_token %}
                             <div class="input-group mb-3 inputloginGroup">
                               <!-- <div class="input-group-prepend " style="border-right-width: 0px;" id="testFocus" >

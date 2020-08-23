@@ -8,6 +8,14 @@
 h1, h2, h3, h4, h5, h6, .worksans, .worksans * {
     font-family: 'Work Sans', sans-serif !important;
 }
+.main-nav{
+    padding-left: 50px;
+    padding-right:50px;
+}
+#dropdown-user-profil-menu .dropdown-menu{
+    position: absolute;
+    left: -100px !important;
+}
 
 .main-color {
     background-color: #060d3b;
@@ -127,4 +135,8 @@ input:focus{
     margin-top: -2rem;
     margin-left: -3.2rem;
     transform: rotate(14deg);
+}
+
+#dropdown-user-profil-menu .dropdown-menu a.dropdown-item{
+    color: black !important;
 }

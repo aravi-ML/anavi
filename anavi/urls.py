@@ -11,6 +11,8 @@ urlpatterns = [
     path("comment/",include("comment.urls")),
     path('',views.index,name='home_page'),
     path("error/",include("anavibase.urls")),
+    path("manager/",include("anavimanager.urls")),
+    path("country/",include("countryapp.urls")),
     path('djangoadmin/', admin.site.urls),
 
 ]

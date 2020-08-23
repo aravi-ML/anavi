@@ -29,4 +29,9 @@ class UserService:
             response["msg"]="veuillez verifier votre addresse email et votre mot de passe"
         
         return response
+    
+    @classmethod
+    def is_authenticated(cls,request):
+        user_session=request.session.get("user",None)
+        return user_session
 

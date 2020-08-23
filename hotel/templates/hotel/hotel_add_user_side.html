@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script type="text/javascript">
+    hotel_information={};
+</script>
+<div class="main-container container">
+    <div class="row">
+        <div class="col-lg-5 ml-2  mb-5">
+            <div class='card p-5 border-0 shadow'>
+                <h2>Ask managing exist Hotel  on our platform</h2>
+                <form action="{% url 'amanager:paskmanage' %}" method="post" id="form-ask-managing-hotel" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="find-hotel-ask">Find Hotel here</label>
+                        <input type="text" list="hotel-h-list" id="find-hotel-ask" name="find-hotel-ask" placeholder="enter name of hotel" class="form-control form-control-md" />
+                        <datalist id="hotel-h-list">
+                            {% for hotel in hotel_list  %}
+                                <option text="{{ hotel.name }}" id="{{ hotel.id }}">{{ hotel.name }}</option>
+                                <script type="text/javascript">
+                                    hotel_information["{{hotel.name}}"]={"name":"{{ hotel.name }}","place":"{{hotel.place}}"}
+                                </script>    
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <br />
+                    <table class="table table-bordered">
+                        <caption>Hotel information</caption>
+                        <tbody>
+                            <tr>
+                                <td><b>Name</b></td>
+                                <td id="hfind-name"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Place</b></td>
+                                <td id="hfind-place"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg second-color text-white">ASK MANAGING</button>
+                    </div>
+                </form>
+            </div>
+            
+
+        </div>
+        <div class="col-lg-5  mb-5">
+            <div class="card border-0 shadow p-5">
+                <h2>Add your hotel</h2>
+                <form class="row" method="post" id="add-hotel-from-user" action="{% url 'hotel:paddfromuser' %}">
+                    {% csrf_token %}
+                    <div class="form-group col-12">
+                        <label for="hotel-name">Name</label>
+                        <input type="text" name="hotel-name" id="hotel-name" placeholder="Enter you hotel name" class="form-control form-control-md" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="hotel-phone">Telephone</label>
+                        <input type="text" name="hotel-phone" id="hotel-phone" placeholder="Enter you hotel phone" class="form-control form-control-md" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="hotel-email">Email</label>
+                        <input type="email" name="hotel-email" id="hotel-email" placeholder="hotelanavi@mail.com" class="form-control form-control-md" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="hotel-country">Country</label>
+                        <select  name="hotel-country" id="hotel-country" placeholder="Enter you hotel name" class="form-control form-control-md">
+                            {% for country in country_list  %}
+                            <option value="{{ country.id }}">{{ country.name_en }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="hotel-town">Town</label>
+                        <select type="text" name="hotel-town" id="hotel-town" placeholder="Enter you hotel name" class="form-control form-control-md"></select>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="hotel-description">More detail</label>
+                        <textarea name="hotel-description" id="hotel-description" class="form-control border form-control-plaintext" placeholder="Entrez plus de detail"></textarea>
+                    </div>
+                    <div class="form-group col-12">
+                        <button type="submit" class="btn btn-lg shadow second-color text-white">ADD MY HOTEL</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+  
+{% endblock content %}

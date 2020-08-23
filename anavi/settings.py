@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'hotel.apps.HotelConfig',
     'anaviadmin.apps.AnaviadminConfig',
     'anavicontact.apps.AnavicontactConfig',
+    'countryapp.apps.CountryappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

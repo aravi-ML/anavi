@@ -11,6 +11,7 @@ class User(models.Model):
     phone = models.CharField(null=True,blank=True,max_length=25)
     confirm_code=models.PositiveIntegerField(default=0)
     confirmed=models.BooleanField(default=False)
+    is_admin=models.BooleanField(default=False)
 
 
     def __str__(self):
@@ -22,7 +23,8 @@ class User(models.Model):
             "phone":self.phone,
             "email":self.email,
             "id":self.id,
-            "state":self.state
+            "state":self.state,
+            "is_admin":self.is_admin
         }
 
 class UserAdmin(admin.ModelAdmin):

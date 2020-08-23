@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    
+    {% if hotel_list %}
+    <a href="{% url 'hotel:addfromuser' %}" class="btn main-color text-white btn-lg shadow">ADD ANOTHER HOTEL</a><br />
+        <br />
+        <div class="row">
+            {% for hotel in hotel_list %}
+                <div class="col-4 mb-5">
+                    <a href="#">
+            
+                        <div class="card border-0 shadow p-5 text-center">
+                            <br /><br /><br /><br />
+                                {{ hotel.name }}
+                            <br /><br /><br /><br />
+                        </div>
+                        
+                    </a>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    {% else %}
+    <div class="text-center">
+        <h1>You still don't have hotel to manage</h1>
+        <br />
+        <a href="{% url 'hotel:addfromuser' %}" class="btn second-color text-white btn-lg shadow">ADD YOUR FIRST HOTEL</a>
+        <br />
+        <br />
+    </div>
+            
+            
+    {% endif %}
+        
+</div>
+  
+{% endblock content %}

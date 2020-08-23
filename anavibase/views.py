@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from anaviuser.user_service import *
 
 # Create your views here.
 
@@ -16,4 +17,6 @@ def email_sended(request):
 
 
 def team(request):
-    return render(request,"about/about.html")
+    user_session=UserService.is_authenticated(request)
+    context={"session":user_session}
+    return render(request,"about/about.html",context)

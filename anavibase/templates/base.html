@@ -10,7 +10,11 @@
 {% include "base_css.html" %}
 </head>
 <body>
-  <nav class="navbar fixed-top   bg-white shadow jura">
+  <script type="text/javascript">
+    var home_url="{% url 'home_page' %}"
+    console.log(home_url)
+  </script>
+  <nav class="navbar fixed-top   bg-white shadow main-nav">
     <a class="navbar-brand" href="/"><img src="{% static 'images/logo/logo_anavi_main.png'  %}" /></a>
         <ul class="nav second-color-text">
           <li class="nav-item">
@@ -25,15 +29,38 @@
             <li class="nav-item">
                 <a class="nav-link" href="">Contact us</a>
             </li>
+            
+            {% if request.session.user.id %}
+            <li class="nav-item dropdown" id="dropdown-user-profil-menu">
+              <a class="nav-link text-black-50 dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">{{ request.session.user.name}}</a>
+              <div class="dropdown-menu dropdown-menu-left shadow-lg bg-white border-0" aria-labelledby="dropdown-user-profil-menu">
+                  <a href="{% url 'amanager:managespace' %}" class="dropdown-item">Espace Manager</a>
+                  <a class="dropdown-item" href="#">Espace Expert</a>
+                  <a class="dropdown-item" href="#">Espace Developpeur</a>
+                  <div class="dropdown-divider"></div>
+                  
+                  {% if request.session.user.is_admin %}
+                    <a class="dropdown-item" href="#">Administration</a>
+                  {% endif %}
+                    
+                  <a class="dropdown-item" href="#">Mon Compte</a>
+                  <a class="dropdown-item" href="#">Changer mon mot de passe</a>
+                  <a href="#" class="dropdown-item">Deconnexion</a>
+              </div>
+            </li>
+            {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'anaviuser:login' %}">Connection</a>
+              <a class="nav-link" href="{% url 'anaviuser:login' %}">Connection</a>
             </li>
             <li class="nav-item">
               <a class="nav-link second-color text-white rounded-pill shadow" style="width: 150px; text-align: center;" href="">Register</a>
-          </li>
+            </li>
+            {% endif %}
+              
+
         </ul>
 </nav>
-<br /><br /><br />
+<br /><br /><br /><br /><br />
 {% block content %}{% endblock %}
 
 <div class='footer anavi-footer border-top'>
@@ -92,13 +119,13 @@
       </div>
     
     </div>
-  </br/>
+  <br />
   <div class='text-center'>
      <strong>copyright@anavi-ml 2020</strong>
   </div>
  
-   </br/>
-    </br/>
+   <br />
+    <br />
 </div>
 
 

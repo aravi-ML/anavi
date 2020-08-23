@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from hotel.hotel_service import *
+from countryapp.models import Country
 # Create your views here.
 
 def add(request):
@@ -44,3 +45,9 @@ def dashboard(request,pk):
         context["web"]=info_most_comment
 
     return render(request,"hotel/dashboard_hotel.html",context)
+
+def hotel_add_user_side(request):
+    country_list=Country.objects.all().order_by("name_en")
+    hotel_list=Hotel.objects.all().exclude(add_from_user=True,accept=False)
+    context={"country_list":country_list,"hotel_list":hotel_list}
+    return render(request,"hotel/hotel_add_user_side.html",context)
