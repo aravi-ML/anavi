@@ -11,8 +11,7 @@
 </head>
 <body>
   <script type="text/javascript">
-    var home_url="{% url 'home_page' %}"
-    console.log(home_url)
+    var home_url="{% url 'home_page' %}";
   </script>
   <nav class="navbar fixed-top   bg-white shadow main-nav">
     <a class="navbar-brand" href="/"><img src="{% static 'images/logo/logo_anavi_main.png'  %}" /></a>
@@ -40,7 +39,7 @@
                   <div class="dropdown-divider"></div>
                   
                   {% if request.session.user.is_admin %}
-                    <a class="dropdown-item" href="#">Administration</a>
+                    <a class="dropdown-item" href="{% url 'anaviadmin:dashboard' %}">Administration</a>
                   {% endif %}
                     
                   <a class="dropdown-item" href="#">Mon Compte</a>

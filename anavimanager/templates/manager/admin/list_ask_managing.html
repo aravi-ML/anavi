@@ -1,0 +1,47 @@
+{% extends 'anaviadmin/base_admin.html' %}
+
+
+{% block content %}
+<br />
+<div class="container">
+    <h1>List of ask to manage</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Hotel name</th>
+                <th>Hotel place</th>
+                <th>User</th>
+                <th>Ask date</th>
+                <th>Decide</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for askm in list_ask_manage  %}
+              <tr id="askmaningtr{{ askm.id }}">
+                  <td>{{ askm.hotel_inf.name }}</td>
+                  <td>{{ askm.hotel_inf.place }}</td>
+                  <td>{{ askm.user_inf.name }}</td>
+                  <td>{{ askm.add_date }}</td>
+                  <td>
+                      <!-- <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch{{ askm.id }}">
+                        <label class="custom-control-label" for="customSwitch{{ askm.id }}">off</label>
+                     </div> -->
+                     <button type="button" decision="a" askm-id="{{ askm.id }}" class="btn btn-success decide-managing">
+                        accept  <i class="fa fa-check"></i>
+                        <span class="sr-only">Accept</span>
+                      </button> 
+                      <button type="button" decision="r"  askm-id="{{ askm.id }}" class="btn btn-danger decide-managing">
+                        Refuse  <i class="fa fa-close"></i>
+                        <span class="sr-only">Refuse</span>
+                      </button>
+                </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    
+{% endblock content %}
+    

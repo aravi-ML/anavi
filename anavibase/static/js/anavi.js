@@ -29,7 +29,12 @@
             $("#hotel-town").html(new_html)
         },"JSON");
     }
-    find_country_town();
+    try{
+        find_country_town();
+    }
+    catch(error){}
+    
+    
     $("#hotel-country").change(function(){
         find_country_town()
     });
@@ -122,6 +127,7 @@ $("#find-hotel-ask").on("input click change keyup focus keydown",function(){
             }
         })
     });
+
 
     
 }); })(jQuery) 

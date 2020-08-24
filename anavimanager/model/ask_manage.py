@@ -14,6 +14,18 @@ class AskManage(models.Model):
     decision_by=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,related_name="decision_by")
     state=models.BooleanField(default=False)
 
+    def hotel_inf(self):
+        return{
+            "name":self.hotel.name,
+            "id":self.hotel.id,
+            "place":self.hotel.place
+        }
+    def user_inf(self):
+        return {
+            "name":self.user.name,
+            "id":self.user.id
+        }
+
 class AskManageAdmin(admin.ModelAdmin):
     list_display=["hotel","user","state","add_date","decision_by"]
     search_fields=["hotel","user","decision_by","add_date"]

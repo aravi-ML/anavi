@@ -2,38 +2,120 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    
-    {% if hotel_list %}
-    <a href="{% url 'hotel:addfromuser' %}" class="btn main-color text-white btn-lg shadow">ADD ANOTHER HOTEL</a><br />
-        <br />
-        <div class="row">
-            {% for hotel in hotel_list %}
-                <div class="col-4 mb-5">
-                    <a href="#">
-            
-                        <div class="card border-0 shadow p-5 text-center">
-                            <br /><br /><br /><br />
-                                {{ hotel.name }}
-                            <br /><br /><br /><br />
+    <ul class="nav  nav-pills mb-4 border-bottom shadow" id="tab-manager-space" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="my-hotel-link" data-toggle="tab" href="#my-hotel-tab" role="tab" aria-controls="home" aria-selected="true">My Hotels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="ask-hotel-link" data-toggle="tab" href="#ask-hotel-tab" role="tab" aria-controls="profile" aria-selected="false">Ask in process</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="wait-for-confirm-link" data-toggle="tab" href="#wait-for-confirm-tab" role="tab" aria-controls="contact" aria-selected="false">My Added Hotel</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <!-- Begin list hotel we manage -->
+        <div class="tab-pane fade active show" id="my-hotel-tab" role="tabpanel" aria-labelledby="my-hotel-link">
+            {% if hotel_list %}
+            <a href="{% url 'hotel:addfromuser' %}" class="btn main-color text-white btn-lg shadow">ADD ANOTHER HOTEL</a><br />
+                <br />
+                <div class="row">
+                    {% for hotel in hotel_list %}
+                        <div class="col-4 mb-5">
+                            <a href="{% url 'hotel:dashboard' hotel.hotel_inf.token %}">
+                    
+                                <div class="card border-0 shadow p-5 text-center">
+                                    <br /><br /><br /><br />
+                                        {{ hotel.hotel_inf.name }}
+                                    <br /><br /><br /><br />
+                                </div>
+                                
+                            </a>
+        
                         </div>
-                        
-                    </a>
-
+                    {% endfor %}
                 </div>
-            {% endfor %}
+        
+            {% else %}
+            <div class="text-center">
+                <h1>You still don't have hotel to manage</h1>
+                <br />
+                <a href="{% url 'hotel:addfromuser' %}" class="btn second-color text-white btn-lg shadow">ADD YOUR FIRST HOTEL</a>
+                <br />
+                <br />
+            </div>   
+            {% endif %}
         </div>
+        <!-- End hotel we managed -->
 
-    {% else %}
-    <div class="text-center">
-        <h1>You still don't have hotel to manage</h1>
-        <br />
-        <a href="{% url 'hotel:addfromuser' %}" class="btn second-color text-white btn-lg shadow">ADD YOUR FIRST HOTEL</a>
-        <br />
-        <br />
-    </div>
+        <!--Begin hotel ask in waiting -->
+        <div class="tab-pane fade active" id="ask-hotel-tab" role="tabpanel" aria-labelledby="ask-hotel-link">
+                {% if ask_manage_list %}
+                    <h2>Management demand in process</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Hotel Name</th>
+                                <th>Place</th>
+                                <th>Ask Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for askm in ask_manage_list %}
+                            <tr>
+                                <td>{{ askm.hotel_inf.name }}</td>
+                                <td>{{ askm.hotel_inf.place }}</td>
+                                <td>{{ askm.add_date }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                <h1>Any demand in process</h1>
+            {% endif %}
+        </div>
+        <!--End hotel ask in waiting-->
+        <!-- begin on added hotel -->
+        <div class="tab-pane fade active" id="wait-for-confirm-tab" role="tabpanel" aria-labelledby="wait-for-confirm-link">
             
-            
-    {% endif %}
+            {% if hotel_add_list %}
+            <br />
+            <h1>List of hotel in wait of confirmation</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Place</th>
+                            <th>Description</th>
+                            <th>Country</th>
+                            <th>Add the</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for hotel in hotel_add_list  %}
+                            <tr>
+                                <td>{{ hotel.name }}</td>
+                                <td>{{ hotel.phone }}</td>
+                                <td>{{ hotel.email }}</td>
+                                <td>{{ hotel.place }}</td>
+                                <td>{{ hotel.description }}</td>
+                                <td>{{ hotel.county_inf.name }}({{ hotel.city_inf.name}})</td>
+                                <td>{{ hotel.add_date}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+                {% else %}
+                <h1>Any hotel added by you is on waiting of confirmation</h1>
+            {% endif %}
+                
+        </div>
+        <!-- End of added hotel -->
+      </div>
         
 </div>
   

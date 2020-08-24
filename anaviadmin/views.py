@@ -7,6 +7,7 @@ from comment.model.comment import *
 from anaviexpert.expert_service import ExpertService
 from anaviuser.user_service import UserService
 from anavisearcher.searcher_service import SearcherService
+from anavimanager.models import Manager,AskManage
 # Create your views here.
 
 
@@ -30,3 +31,9 @@ def download(request):
         hotel_list.append(Hotel.objects.get(pk=hotel["hotel"]))
     context={"hotels":hotel_list}
     return render(request,"anaviadmin/download_data.html",context)
+
+
+def ask_managing_list(request):
+    list_of_ask_managing=AskManage.objects.all().order_by("-add_date").filter(decision_by=None)
+    context={"list_ask_manage":list_of_ask_managing}
+    return render(request,"manager/admin/list_ask_managing.html",context)

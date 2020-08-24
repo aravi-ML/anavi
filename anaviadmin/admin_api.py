@@ -2,12 +2,16 @@ from django.http import JsonResponse,HttpResponse
 from hotel.hotel_service import *
 from comment.comment_service import *
 from anavi.utility import *
+from anavimanager.models import AskManage, Manager,User
 
 def download_data(request):
-    hotel_id=request.GET.get("choose_hotel",0)
+    hotel_id=request.GET.get("choose_hotel","").strip()
     format_data=request.GET.get("format","json")
     #Maintenant nous devons recuperer tous les commentaires de cet hotel
-    comment_hotel=Comment.objects.filter(hotel=Hotel(id=hotel_id))
+    if(hotel_id==""):
+        comment_hotel=Comment.objects.all().exclude(Q(text="")|Q(text=None))
+    else:
+        comment_hotel=Comment.objects.filter(hotel=Hotel(id=hotel_id)).exclude(Q(text="")|Q(text=None))
     length=len(comment_hotel)
     comment_dump=[]
     json_all_comments=""
@@ -27,3 +31,29 @@ def download_data(request):
 
     comment_dump["status"]=True
     return response
+
+def perfom_decision_ask_managing(request):
+    """When the demand of manage hotel is accepted, we will
+    create a new manager for hotel. And he will""" 
+    user=User(id=request.session["user"]["id"])
+    askm_id=request.GET.get("askm",0)
+    asmk_decision=request.GET.get("decision","i").lower().strip()
+    askm=AskManage.objects.get(id=askm_id)
+    askm.decision_by=user
+    result={"status":True}
+    if(asmk_decision=="a"):
+        askm.state=True
+        askm.save()
+        #Now we create a new manager
+        manager=Manager(user=askm.user,hotel=askm.hotel,state=True)
+        manager.save()
+        result["msg"]="Asking Confirm with successs"
+    elif(asmk_decision=="r"):
+        askm.state=False
+        askm.save()
+        result["msg"]="Asking was refuse with success"
+    else:
+        result["status"]=False
+        result["msg"]="Error occured during presentation"
+
+    return JsonResponse(result)

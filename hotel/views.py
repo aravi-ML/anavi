@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from hotel.hotel_service import *
+from comment.comment_service import Comment,CommentService
 from countryapp.models import Country
+import matplotlib.pyplot as plt
+from anavi.utility import *
 # Create your views here.
-
+temp_path_plot="hotel/static/hotel/temp_image/"
 def add(request):
     response= {"state":False}
     hotel_name=request.POST['name']
@@ -36,11 +39,18 @@ def link_to_web_site(request):
         hotel_website.save()
     return response
 
-def dashboard(request,pk):
-    hotel=Hotel(id=pk)
-    info_most_comment=HotelService().get_website_have_most_comment(hotel)
-    nb_comment=HotelService().count_comment(hotel)
-    context={"id":pk,"nb_comment":nb_comment}
+def dashboard(request,token):
+    hotel=Hotel.objects.get(token=token)
+    info_most_comment=HotelService.get_website_have_most_comment(hotel)
+    nb_comment=HotelService.count_comment(hotel)
+    comment_by_website=HotelService.get_comment_by_website(hotel)
+
+    plt.bar(list(comment_by_website.keys()),list(comment_by_website.values()))
+    name_plot_comment_by_site=get_random_string(20)+".png"
+    plt.savefig(temp_path_plot+name_plot_comment_by_site)
+    plt.close()
+
+    context={"id":hotel.id,"nb_comment":nb_comment,"plot_comment_by_site":name_plot_comment_by_site}
     if(info_most_comment!=None):
         context["web"]=info_most_comment
 

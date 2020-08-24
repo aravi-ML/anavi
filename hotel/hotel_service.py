@@ -2,6 +2,7 @@ from django.db.models import Count
 from hotel.model.hotel import *
 from hotel.model.hotel_website import *
 from .hotel_website_service import HotelWebSiteService
+from comment.comment_service import Comment,CommentService
 
 class HotelService:
     """This class is to make all operation about hotel
@@ -21,12 +22,14 @@ class HotelService:
     def count(self):
         """Function who return the number of saved hotel"""
         return len(Hotel.objects.all())
-    
-    def count_comment(self,hotel):
+   
+    @classmethod
+    def count_comment(cls,hotel):
         comment=hotel.comment_set.all()
         return len(comment)
     
-    def get_website_have_most_comment(self,hotel):
+    @classmethod
+    def get_website_have_most_comment(cls,hotel):
         """Take hotel in parameter and return the website who have more
         feedback than others concerning it"""
         list_web_site=hotel.comment_set.all().values("website").annotate(nb=Count("text")).order_by("nb")
@@ -40,7 +43,7 @@ class HotelService:
     
     def add_hotel(self,hotel):
         response= {"status":False,"msg":"hotel add with success","hotel":None}
-        exist=self.if_exist_hotel(hotel);
+        exist=self.if_exist_hotel(hotel)
         if(exist["status"]==False):
             response['status']=True
             hotel.save()
@@ -54,7 +57,7 @@ class HotelService:
     def add_hotel_to_web_site(self,hotelwebsite):
         """That function is to add hotel to a website"""
         hwservice=HotelWebSiteService()
-        return hwservice.add(hotelwebsite);
+        return hwservice.add(hotelwebsite)
     
     def find_hotel_by_id(self,hotel):
         response={"hotel":None}
@@ -73,3 +76,15 @@ class HotelService:
         except:
             pass
         return response
+    
+    @classmethod
+    def get_comment_by_website(cls,hotel):
+        """That method return all the website and the comment that are present
+            for this hotel in every website"""
+        comment_by_site=Comment.objects.filter(hotel=hotel).values("website").annotate(nb=models.Count("text")).order_by("nb")
+        final_result={}
+        for result in comment_by_site:
+            website=WebSite.objects.get(id=result["website"])
+            final_result[website.name]=result["nb"]
+        return final_result
+            

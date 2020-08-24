@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <br />
 <div class='container stat-card'>
     <div class='row'>
+        <div class="col-6">
+            <h3>Comment by site</h3>
+            <img src="{% static 'hotel/temp_image/' %}{{ plot_comment_by_site }}" width="100%" />
+        </div>
         <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
             <div class="card border-0 shadow">
                 <h3>{{ nb_comment }}</h3>

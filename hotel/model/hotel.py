@@ -18,7 +18,8 @@ class Hotel(models.Model):
     phone=models.CharField(max_length=100,null=True,default="",blank=True)
     accept=models.BooleanField(default=False)
     accept_by=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,default=None,related_name="accept_by")
-
+    token=models.CharField(max_length=20,default="",null=True)
+    
     def __str__(self):
         return self.name+"("+str(self.pk)+")"
     
@@ -34,6 +35,17 @@ class Hotel(models.Model):
             "place":self.place,
             "add_date":self.add_date,
             "user":self.user
+        }
+    
+    def country_inf(self):
+        return {
+            "name":self.country.name_en,
+            "id":self.country.id
+        }
+    def city_inf(self):
+        return {
+            "name":self.city.name,
+            "id":self.city.id
         }
 
 class HotelAdmin(admin.ModelAdmin):
