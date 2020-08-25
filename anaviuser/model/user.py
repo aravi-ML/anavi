@@ -1,9 +1,10 @@
+from django.conf import settings
 from django.db import models
 from django.contrib import admin
 class User(models.Model):
     """ class which represent the user (hotel manager, data scientist, searcher) of our system"""
     name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100,null=True,)
     email = models.EmailField(max_length=100)
     password = models.CharField(max_length=200)
     state = models.BooleanField(default=False)

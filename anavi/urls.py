@@ -1,6 +1,7 @@
 from . import views
 from django.contrib import admin
 from django.urls import path,include
+app_name = "anavi"
 urlpatterns = [
     path('website/',include("website.urls")),
     path("admin/",include("anaviadmin.urls")),

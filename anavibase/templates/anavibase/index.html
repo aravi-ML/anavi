@@ -5,36 +5,152 @@
 
 {% block content %}
 <br />
-<div class='container-fluid main-color'>
+<div class='container-fluid main-color '>
   <br />
   <br />
   <br />
   <br />
   <div class='row row-cols-sm-1 row-cols-md-2 row-cols-xl-2'>
-    <div class='col text-white'>
-      <h2 class='jura'>
-        We give you possibility to analyse the feed back of your
+    <div class='col text-white lg-2'>
+      <h3 class='jura'>
+       <br />
+        We give you possibility to <b>analyse</b> the feed back of your
         clients with the goal to perform well your services and
         offer
         <br />
         <br />
-      </h2>
+      </h3>
       <h2>
         <span class='montserrat'>
           Opinion at the heart of the process</span>
       </h2>
-      <br />
-      
-      <a href='' class='btn rounded-pill second-color shadow p-3 text-white' style='width:150px'>Join us</a>
+      <a href='/user/login' class='btn rounded-pill second-color shadow p-3 text-white' style='width:150px'>Join us</a>
       <br />
       <br />
     </div>
+    <div class= col-lg-5 >
+     <div class = "same_image">
+        </div>
+        <img src="{% static 'user/images/emotion_bg.jpg' %}" style='width:700px;border-radius:30px'/>
+    </div>
+    <div class= col-lg-1>
+        
+    </div>
+    <br />
+    <br />
+  </div>
+</div>
+
+<div class='container' style="background:white">
+  <br />
+  <div class='row row-cols-sm-1 row-cols-md-2 row-cols-xl-2'>
+    <div class= col-lg-5 >
+        <img src="{% static 'images/customersatisfaction.jpg' %}" style='width:100%;height:300px;border-radius:4px'/>
+    </div>
+
+    <div class='col text-white lg-2'>
+      <h3 class='jura main-color-text'>
+       <br />
+        You are an <b>Hotel Manager</b> , Anavi give you the possibilty 
+        to know how your customers find your products
+        <br />
+        <br />
+      </h3>
+      <h2>
+        <span class='montserrat'>
+          Opinion at the heart of the process</span>
+      </h2>
+      <a href='/user/login' class='btn rounded-pill second-color shadow p-3 text-white' style='width:150px'>Join us</a>
+      <br />
+      <br />
+    </div>
+
+    <div class= col-lg-1>
+        
+    </div>
+  </div>
+
+  <br />
+    <div class='row row-cols-sm-1 row-cols-md-2 row-cols-xl-2'>
+    <div class='col text-white lg-2'>
+      <h3 class='jura main-color-text'>
+       <br />
+        You are an <b>Linguist</b> , Help Anavi by tagging some sentences or words to enrichir the model for training
+        <br />
+        <br />
+      </h3>
+      <h2>
+        <span class='montserrat'>
+          Opinion at the heart of the process</span>
+      </h2>     
+      <a href='/user/login' class='btn rounded-pill second-color shadow p-3 text-white' style='width:150px'>Join us</a>
+      <br />
+      <br />
+    </div>
+    <div class= col-lg-5 >
+        <img src="{% static 'images/linguistic2.png' %}" style='width:100%;border-radius:4px'/>
+    </div>
+    <div class= col-lg-1>
+        
+    </div>
   </div>
   <br />
+  <div class='row row-cols-sm-1 row-cols-md-2 row-cols-xl-2'>
+    
+    <div class= col-lg-5 >
+        <img src="{% static 'images/download2.jpg' %}" style='width:100%;border-radius:4px'/>
+    </div>
+    <div class='col text-white lg-2'>
+      <h3 class='jura main-color-text'>
+       <br />
+       You are a 
+        <b>
+        student researcher</b>, and need data on the opinions of customers regarding the services of Cameroonian hotels,
+         Anavi provides you with a range of comments obtained by crawling from different booking sites.
+        
+        <br />
+        <br />
+      </h3>
+      <h2>
+        <span class='montserrat'>
+          Opinion at the heart of the process</span>
+      </h2>
+      <a href='/user/login' class='btn rounded-pill second-color shadow p-3 text-white' style='width:150px'>Join us</a>
       <br />
       <br />
-      <br />
-      <img src="{% static 'user/images/emotion_bg.jpg' %}" />
+    </div>
+    <div class= col-lg-1>
+        
+    </div>
+  </div>
+  <br />
+  <div class='row'>
+     <h3 >
+         <span class='montserrat'>
+         Contact us</span>
+     </h3>
+     <div class='col-lg-5'>
+     <form action="" method = "POST">
+       <div class="input-group mb-3 inputloginGroup">
+          <i class="fas fa-phone-alt iconLogin" style="border-right-width: 0px;"></i> 
+          <input type='text' name='telephone' id='telephone' placeholder="Enter phone number" class='form-control inputLogin' style="border-left-width: 0px;"  />
+        </div>
+        <div class="input-group mb-3 inputloginGroup">
+          <i class="fas fa-phone-alt iconLogin" style="border-right-width: 0px;"></i> 
+          <input type='text' name='mail' id='mail' placeholder="Enter your mail" class='form-control inputLogin' style="border-left-width: 0px;"  />
+        </div>
+        <div class="input-group mb-3 inputloginGroup">
+          <textArea type='text' name='message' id='message' placeholder="Enter your message" class='form-control inputLogin'></textArea>
+                  
+        </div>
+
+     </form>
+     
+  </div>
+  </div>
+    
+      
 </div>
+
 
 {% endblock %}

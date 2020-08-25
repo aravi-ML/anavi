@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from anaviuser.models import User
 
 # Create your views here.
 def login(request):
@@ -11,13 +12,32 @@ def signup(request):
 
 def reinitialiser(request):
     context = {"title":"reinitialise","reset":"Reset your password"}
-    return render(request,'anaviuser/reinitialiser_pwd.html', context)
+    mail = request.POST["mail"]
+    try: 
+      check_mail = User.objects.get(email=mail)
+      return render(request,'anaviuser/reinitialiser_pwd.html', context)
+    except User.DoesNotExist:
+      return render(request,'anaviuser/reinitialize_mail.html')
+
+    
 
 
 def reinitialise_mail(request):
     context  = {"title":"mail_reinitialise","reset":"Reinitialise your password"}
+
     return render(request,'anaviuser/reinitialize_mail.html',context)
 
-def reinitialise_code(request):
+def reinitialise_code(request,user):
     context = {"title":"code_reinitialize","reset":"Reinitialise your password"}
-    return render(request,'anaviuser/reinitialise_code.html',context)
+    password  = request.POST["password"]
+    c_password = request.POST["c-password"]
+    try:
+        user = User.objects.get(email=user_email)
+        user.password=password
+        user.save()
+        return render(request,'/',context)
+    except User.DoesNotExist:
+        return render (request,'anaviuser/reinitaliser_mail.html',context)
+
+
+    

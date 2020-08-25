@@ -5,13 +5,47 @@
     font-family: 'Jura',sans-serif !important;
 }*/
 
-h1, h2, h3, h4, h5, h6, .worksans, .worksans * {
+h1, h2, h3, h4, h5, h6, .worksans,.worksans * {
     font-family: 'Work Sans', sans-serif !important;
 }
 
+.same_image{
+    width:88.4% ; border-radius:30px ;
+    position:absolute; 
+    background-color:rgba(0,0,0,0.6);
+    height: 100%;
+}
+.image_acceuil{
+    width:700px;
+    border-radius: 10px;
+    
+}
+.message{
+    display: none;
+    font-family: 'Work Sans', sans-serif !important;
+    font-size: 10px;
+}
+.valid{
+    color: green;
+}
 .main-color {
     background-color: #060d3b;
     background-color: rgb(6, 13, 59);
+}
+.valid:before 
+{
+    position: relative;
+    left: 0px;
+    content: "✔";
+  }
+.invalid:before 
+  {
+    position: relative;
+    left: 0px;
+    content: "✖";
+  }  
+.invalid {
+    color: red;
 }
 
 .second-color {

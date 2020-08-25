@@ -34,7 +34,7 @@
                 </div>
                 <div class='col-lg-5'>
                     <br />
-                    <img class = "logo_blanc" src="{% static 'images/logo/logo_anavi_blanc_2.png' %}" style="margin-top: 15px;" />
+                     <a href="/"><img class = "logo_blanc" src="{% static 'images/logo/logo_anavi_blanc_2.png' %}" style="margin-top: 15px;" /> </a>
                     <br />
                     <br />
                     <br />
@@ -47,17 +47,14 @@
                 <div class="col-lg-5 bg-white text-dark rounded-sm shadow-lg white-part"  >
                     <div class='container'>
                         <div class="text-center">
-                            <img src="{% static 'images/logo/logo_anavi_bold.png' %}" style='position: relative; margin: 15px; width: 70px;'/>
+                            <a href="/"><img src="{% static 'images/logo/logo_anavi_bold.png' %}" style='position: relative; margin: 15px; width: 70px;'/></a>
                         </div> 
                        <div class = ""> 
                         <h3 class='main-color-text ' style="margin: 10px;">Sign In</h3>
                        </div>
-                        <form style="margin-top: 30px;">
+                        <form style="margin-top: 30px;" >
 
                             <div class="input-group mb-3 inputloginGroup">
-                              <!-- <div class="input-group-prepend " style="border-right-width: 0px;" id="testFocus" >
-                                <i class="fa fa-at main-color-text input-group-text bg-white iconLogin"  id="inputGroup-sizing-default" style="border-right-width: 0px;"></i>   
-                              </div> -->
                               <i class="fa fa-at iconLogin" style="border-right-width: 0px;"></i> 
                               <input type='text' name='login' id='login' placeholder="Enter phone or email" class='form-control inputLogin' style="border-left-width: 0px;"  />
                             </div>
@@ -68,13 +65,13 @@
                                 <input type='password' name='password' id='password'  placeholder="Enter your password" class='form-control inputLogin' style="border-left-width: 0px;"  />
                             </div>
                            
-                            <a href='/user/reinitialize_mail' class='main-color-text'>Mot de passe oublié?</a>
+                            <a href="{% url 'anaviuser:Reinitialze_mail' %}" class='main-color-text'>Mot de passe oublié?</a>
                             <br />
                             <br />
                             
                             <div class='row'>
                                 <div  class="col-lg-5" >
-                                    <a href='/user/signup' class='btn rounded text-white second-color container' >No Account?</a>
+                                    <a href="{% url 'anaviuser:userSignup' %}" class='btn rounded text-white second-color container' >No Account?</a>
                                 </div>
                                 <div class='col-lg-2 '>
                                 </div>
