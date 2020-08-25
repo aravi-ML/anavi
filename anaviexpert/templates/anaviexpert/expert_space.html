@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3"></div>
+        <div class="col-lg-6 col-md-6 shadow mb-5 p-5">
+            <h3>You are not yet a language expert in our system. Apply to become one</h3>
+            <br />
+            <form  method="post" id="form-ask-become-expert" action="{% url 'expert:paskexepert' %}" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="expert-lang">Wich language do you know?</label>
+                    <select name="expert-lang" id="expert-lang" class="form-control form-control-md">
+                        <option value="english">English</option>
+                        <option value="french">French</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="other-expert-lang">Another language?</label>
+                    <input type="text" name="other-expert-lang" id="other-expert-lang" class="form-control form-control-md" placeholder="language1,language2,... separate by comma" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-lg main-color text-white shadow">APPLY</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-3"></div>
+    </div>
+    
+    <br />
+</div>
+
+{% endblock content %}

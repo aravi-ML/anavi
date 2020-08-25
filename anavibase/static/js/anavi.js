@@ -36,7 +36,7 @@
     
     
     $("#hotel-country").change(function(){
-        find_country_town()
+        find_country_town();
     });
     //code pour ajouiter un hotel depuis un utlisateur
 
@@ -63,17 +63,17 @@
 function charge_find_hotel_ask(){
     var value=$("#find-hotel-ask").val().trim()
     if(hotel_information[value]!=undefined){
-        $("#hfind-name").text(hotel_information[value]["name"])
-        $("#hfind-place").text(hotel_information[value]["place"])
+        $("#hfind-name").text(hotel_information[value]["name"]);
+        $("#hfind-place").text(hotel_information[value]["place"]);
     }
     else{
-        $("#hfind-name").text("")
-        $("#hfind-place").text("")
+        $("#hfind-name").text("");
+        $("#hfind-place").text("");
     }
 }
 
 $("#find-hotel-ask").on("input click change keyup focus keydown",function(){
-    charge_find_hotel_ask()
+    charge_find_hotel_ask();
 });
         $("#form-login").on("submit",function(fl){
         fl.preventDefault();
@@ -128,6 +128,25 @@ $("#find-hotel-ask").on("input click change keyup focus keydown",function(){
         })
     });
 
-
+    //gestion de la demande a devenir exepert
+    $("#form-ask-become-expert").on("submit",function(ert){
+        ert.preventDefault();
+        var ask_data= new FormData(this)
+        $.ajax({
+            url:$(this).attr("action"),
+            data: ask_data,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            method: "post",
+            success: function(result){
+                display_result(result)
+            },
+            error: function(result){
+                window.location.reload()
+            }
+        })
+    });
+    
     
 }); })(jQuery) 

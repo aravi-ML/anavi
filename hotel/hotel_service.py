@@ -21,7 +21,7 @@ class HotelService:
     
     def count(self):
         """Function who return the number of saved hotel"""
-        return len(Hotel.objects.all())
+        return Hotel.objects.aggregate(nb=models.Count("id"))["nb"]
    
     @classmethod
     def count_comment(cls,hotel):

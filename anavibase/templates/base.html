@@ -11,7 +11,7 @@
 </head>
 <body>
   <script type="text/javascript">
-    var home_url="{% url 'home_page' %}";
+    var home_url="{% url 'home' %}";
   </script>
   <nav class="navbar fixed-top   bg-white shadow main-nav">
     <a class="navbar-brand" href="/"><img src="{% static 'images/logo/logo_anavi_main.png'  %}" /></a>
@@ -34,7 +34,7 @@
               <a class="nav-link text-black-50 dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">{{ request.session.user.name}}</a>
               <div class="dropdown-menu dropdown-menu-left shadow-lg bg-white border-0" aria-labelledby="dropdown-user-profil-menu">
                   <a href="{% url 'amanager:managespace' %}" class="dropdown-item">Espace Manager</a>
-                  <a class="dropdown-item" href="#">Espace Expert</a>
+                  <a class="dropdown-item" href="{% url 'expert:space' %}">Espace Expert</a>
                   <a class="dropdown-item" href="#">Espace Developpeur</a>
                   <div class="dropdown-divider"></div>
                   

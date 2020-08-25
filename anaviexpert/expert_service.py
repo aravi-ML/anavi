@@ -1,4 +1,4 @@
-from .model.expert import Expert
+from .models import Expert,models
 
 
 class ExpertService:
@@ -8,4 +8,4 @@ class ExpertService:
 
     def count(self):
         """Return the number of service """
-        return len(Expert.objects.all())
+        return Expert.objects.aggregate(nb=models.Count("id"))["nb"]

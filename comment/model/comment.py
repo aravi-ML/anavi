@@ -30,7 +30,7 @@ class Comment(models.Model):
         }
     
     def to_json_string(self):
-        return '{\n  \t\t\t"original":"'+self.text+'",\n \t\t\t "fr":"'+self.text_fr+'",\n \t\t\t "en":"'+self.text_en+'",\n \t\t\t "lang":"'+self.text_lang+'"\n\t\t}'
+        return '{\n \t\t\t"id":'+str(self.id)+',\n  \t\t\t"original":"'+self.text.replace("\"","'").replace("\n"," ")+'",\n \t\t\t "fr":"'+self.text_fr.replace("\"","'").replace("\n"," ")+'",\n \t\t\t "en":"'+self.text_en.replace("\"","'").replace("\n"," ")+'",\n \t\t\t "lang":"'+self.text_lang+'"\n\t\t}'
     
     def __str__(self):
         return self.text+"("+str(self.id)+")"

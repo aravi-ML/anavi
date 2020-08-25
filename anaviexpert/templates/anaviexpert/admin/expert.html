@@ -1,0 +1,133 @@
+{% extends "anaviadmin/base_admin.html" %}
+
+{% block content %}
+<br />
+<div class="container">
+    <h1>Manage the expert</h1>
+<ul class="nav nav-pills border-bottom custom-nav-main" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="expert-list-link" data-toggle="tab" href="#expert-list-tab" role="tab" aria-controls="home" aria-selected="true">Expert</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="expert-apply-link" data-toggle="tab" href="#expert-apply-tab" role="tab" aria-controls="profile" aria-selected="false">Expert Apply</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="expert-rejected-apply-link" data-toggle="tab" href="#expert-rejected-apply-tab" role="tab" aria-controls="contact" aria-selected="false">Rejected demand</a>
+      </li>
+</ul>
+
+<div class="tab-content">
+<!-- Begin expert list-->
+<div class="tab-pane fade active show" id="expert-list-tab" role="tabpanel" aria-labelledby="expert-list-link">
+  
+  {% if experts %}
+    <h2>List of expert</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th><i class="fa fa-chart"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for expert in experts  %}
+            <tr>
+              <td>{{ expert.user_inf.name }}</td>
+              <td>{{ expert.user_inf.last_name }}</td>
+              <td>{{ expert.user_inf.email }}</td>
+              <td>{{ expert.user_inf.phone }}</td>
+              <td><a href="#"><i class="fa fa-chart"></i></a></td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+  <h1>Any expert of language present in the system</h1>
+  {% endif %}
+    
+</div>
+<!-- End expert list-->
+<!-- Begin of apply expert -->
+<div class="tab-pane fade" id="expert-apply-tab" role="tabpanel" aria-labelledby="expert-apply-link">
+  
+  {% if applies %}
+      <h2>List fo applies to become expert</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Add Date</th>
+            
+            <th>Decision</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for ask_ex in applies  %}
+              <tr id="ask_ex{{ask_ex.id}}">
+                <td>{{ ask_ex.user_inf.name }} {{ ask_ex.user_inf.last_name }}</td>
+                <td> {{ ask_ex.language }}</td>
+                <td>{{ ask_ex.user_inf.email }}</td>
+                <td>{{ ask_ex.user_inf.phone }}</td>
+                <td>{{ ask_ex.add_date }}</td>
+                <td>
+                  <button type="button" class="btn btn-success decide-expert-apply" decision="a" ask_ex="{{ ask_ex.id }}">Accept <i class="fa fa-check"></i></button>  
+                  <button type="button" class="btn btn-danger decide-expert-apply" decision="r" ask_ex="{{ ask_ex.id }}">Refuse <i class="fa fa-close"></i></button>  
+                </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+    Any apply in process
+  {% endif %}
+    
+</div>
+<!-- End of apply expert-->
+<!-- Begin rejected apply -->
+<div class="tab-pane fade" id="expert-rejected-apply-tab" role="tabpanel" aria-labelledby="expert-rejected-apply-link">
+  
+  {% if rejected_applies %}
+  <h2>List of rejected applies</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Add Date</th>
+            
+            <th>Decision</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for ask_ex in rejected_applies  %}
+              <tr id="ask_ex{{ ask_ex.id }}">
+                <td>{{ ask_ex.user_inf.name }} {{ ask_ex.user_inf.last_name }}</td>
+                <td> {{ ask_ex.language }}</td>
+                <td>{{ ask_ex.user_inf.email }}</td>
+                <td>{{ ask_ex.user_inf.phone }}</td>
+                <td>{{ ask_ex.add_date }}</td>
+                <td>
+                  <button type="button" class="btn btn-success decide-expert-apply" decision="a" ask_ex="{{ ask_ex.id }}">Accept <i class="fa fa-check"></i></button>               </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+    <h2>Any apply to become expert language were rejected</h2>
+  {% endif %}
+    
+</div>
+<!-- End rejected apply-->
+</div>
+</div>
+
+  
+{% endblock content %}

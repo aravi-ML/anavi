@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mb-5 mt-5">
+    <div class="row">
+        <div class="col-4 offset-2">
+            <a href="#">
+                <div class="card border-0 shadow p-4 text-center">
+                        MY TAG DATA SPACE
+                </div>
+            </a>
+        </div>
+        <div class="col-4">
+            <a href="{% url 'comment:tagdata' %}">
+                <div class="card border-0 shadow p-4 text-center">
+                        TAG ANAVI DATA
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+  
+{% endblock content %}
+<h1>Welcome to expert choice place</h1>

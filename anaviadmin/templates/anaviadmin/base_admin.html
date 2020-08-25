@@ -14,20 +14,67 @@
 
 </head>
 <body>
-<nav class='navbar shadow border-bottom  bg-white' style='padding-left:90px; padding-right:90px; height:100px;'>
-    <a class='navbar-brand' href="{% url 'anaviadmin:dashboard' %}">menu</a>
-    <ul class='nav'>
-        <li class='nav-item'>
-            <a class='nav-link' href="">Not</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'anaviadmin:download' %}">Download data</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'anaviadmin:askmanaging' %}">Managing Ask</a>
-        </li>
-    </ul>
-</nav>
 
-{% block content %}
-{% endblock content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top: 0px; padding:0px !important">
+        <div class="col-2 shadow-sm main-color" style="position: fixed; height:100% !important; margin:0px !important">
+            <br />
+            <br />
+            <br />    
+            <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{% url 'anaviadmin:dashboard' %}" class="nav-link text-white"><i class="fa fa-dashboard"></i> &nbsp;&nbsp;Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white"><i class="fa fa-user-o"></i> &nbsp;&nbsp;Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'anaviadmin:expert' %}" class="nav-link text-white"><i class="fa fa-language"></i> &nbsp;&nbsp;Expert Language</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white"><i class="fa fa-file-code-o"></i> &nbsp;&nbsp;Developper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'anaviadmin:askmanaging' %}" class="nav-link text-white"><i class="fa fa-building-o"></i> &nbsp;&nbsp;Manager </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white"><i class="fa fa-simplybuilt"></i> &nbsp;&nbsp;Hotel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white"><i class="fa fa-comment-o"></i> &nbsp;&nbsp;Comment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'anaviadmin:download' %}" class="nav-link text-white"><i class="fa fa-download"></i> &nbsp;&nbsp;Download Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link text-white"><i class="fa fa-globe"></i> &nbsp;&nbsp;Return to website</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white"><i class="fa fa-sign-out"></i> &nbsp;&nbsp;Logout </a>
+                    </li>
+                </ul>
+                <div class="text-white text-center" style="position: absolute; bottom:8px;">
+                    <b>copyright@anavi-ml UY1</b>
+                </div>
+        </div>
+        <div class="col offset-2">
+            <nav class='navbar  border-bottom  bg-white' style='padding-left:90px; padding-right:90px; height:70px;'>
+                <a class='navbar-brand' href="{% url 'anaviadmin:dashboard' %}">menu</a>
+                <ul class='nav'>
+                    <li class='nav-item'>
+                        <a class='nav-link' href="">Not</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'anaviadmin:download' %}">Download data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'anaviadmin:askmanaging' %}">Managing Ask</a>
+                    </li>
+                </ul>
+            </nav>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+</div>

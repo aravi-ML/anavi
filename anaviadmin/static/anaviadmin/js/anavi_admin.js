@@ -43,5 +43,28 @@
                 $("#askmaningtr"+String(askm)).fadeOut(1000);
             },"json");
         });
+
+        //gestion des demandes d'experts
+        $(".decide-expert-apply").on("click",function(ert){
+            ert.preventDefault();
+            var decision=$(this).attr("decision");
+            var ask_m=$(this).attr("ask_ex");
+            $.ajax({
+                url:"/expert/decideapply?decision="+String(decision)+"&ask="+String(ask_m),
+                contentType:false,
+                processData:false,
+                method:"get",
+                dataType:"json",
+                success:function(result){
+                    display_result(result);
+                    $("#ask_ex"+ask_m).fadeOut();
+                },
+                error:function(result){
+                   // window.location.reload()
+                }
+            });
+        });
+
+
     });
 })(jQuery)

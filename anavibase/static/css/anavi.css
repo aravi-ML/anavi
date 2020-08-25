@@ -140,3 +140,7 @@ input:focus{
 #dropdown-user-profil-menu .dropdown-menu a.dropdown-item{
     color: black !important;
 }
+.custom-nav-main li.nav-item a.nav-link.active{
+    background-color: #060d3b !important;
+    border-radius: 0px !important;
+}

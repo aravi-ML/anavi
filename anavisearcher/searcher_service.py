@@ -1,4 +1,4 @@
-from .model.searcher import Searcher
+from .models import Searcher,models
 
 
 class SearcherService:
@@ -8,4 +8,4 @@ class SearcherService:
 
     def count(self):
         """return the number of searher of anavi"""
-        return len(Searcher.objects.all())
+        return Searcher.objects.aggregate(nb=models.Count("id"))["nb"]

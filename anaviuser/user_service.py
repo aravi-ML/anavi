@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Q,Count
 from anaviuser.model.user import User
 class UserService:
     def __init__(self):
@@ -6,7 +6,7 @@ class UserService:
 
     def count(self):
         """Return the total number of user in our system """
-        return len(User.objects.all())
+        return User.objects.aggregate(nb=Count("id"))["nb"]
     
     @classmethod
     def authenticate(cls,user):

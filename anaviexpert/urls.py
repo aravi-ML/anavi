@@ -1,7 +1,10 @@
 from django.urls import path
-from . import views
+from . import views,expert_api
 
-appname="expert"
+app_name="expert"
 urlpatterns = [
-    path("tagdata",views.tag_data,name="tag_data")
+    path("tagdata",views.tag_data,name="tag_data"),
+    path("expert-space",views.expert_space,name="space"),
+    path("paskexepert",expert_api.perform_ask_exepert,name="paskexepert"),
+    path("decideapply",expert_api.decide_apply_expert_demand,name="decideapply")
 ]

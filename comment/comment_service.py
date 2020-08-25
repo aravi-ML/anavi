@@ -63,9 +63,7 @@ class CommentService:
 
     def count(self):
         """Function who return all the number of comment"""
-        comments=Comment.objects.all()
-        nb_comment=len(comments)
-        return nb_comment
+        return Comment.objects.aggregate(nb=models.Count("id"))["nb"]
     
     def get_comment_page_list(self,num_page=1,number_per_page=10):
         """By default we are on page 1 and we take 50 comments per 
