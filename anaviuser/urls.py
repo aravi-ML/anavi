@@ -1,5 +1,5 @@
 from django.urls import path
-from .model import user_api
+from . import user_api
 from . import views
 
 app_name= "anaviuser"

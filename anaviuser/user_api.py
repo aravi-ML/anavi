@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.contrib import admin
 from django.db import models
 from anaviuser.models import * 
-from anaviuser.model.user_service import *  
+from .user_service import *  
 import string
 
 """
