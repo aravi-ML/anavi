@@ -1,13 +1,16 @@
 {% load static %}
 <html>
     <head>
-        <title>Confirm account</title>
+        <title>Expert Process</title>
         {% include "base_css.html" %}
     </head>
     <body>
-    <div class="container-fluid main-color text-center shadow">
+    <div class="container-fluid main-color text-center shadow text-center" style="box-shadow: 0px 6px 3px black !important; background-color:purple !important" >
         <br />
-       <img src="{% static 'images/logo/logo_anavi_blanc.png' %}" height="60px" />
+        <center>
+                 <h1 style="color:white">ANAVI</h1>
+        </center>
+      
         <br />
         <br />
     </div>
@@ -15,17 +18,9 @@
     <br />
     <div class="container" style="font-size:25px">
 
-        Hey,<b>{{data.name}}</b><br />
+        Hey,<b>{{ name }}</b><br />
         <br />
-            Vous avez demendez a renitialiser votre mot de passe.
-            Veuilez cliquer sur le lien suivant ou entrez le code dans le
-            champ adequat.
-        <br />
-        <br />
-        <a href="">Terminer l'inscrition</a>
-         <br />
-        <br />
-        <b>Code: {{data.code}}</b>
+        You have applied to become a language expert at Anavi. Your application is being processed. Please check your mailbox regularly or check again if you don't get an answer within a week. Anavi thanks you for your confidence.
        
     </div>
     <br />

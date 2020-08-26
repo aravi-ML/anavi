@@ -44,7 +44,7 @@
                     
                   <a class="dropdown-item" href="#">Mon Compte</a>
                   <a class="dropdown-item" href="#">Changer mon mot de passe</a>
-                  <a href="#" class="dropdown-item">Deconnexion</a>
+                  <a href="{% url 'anaviuser:logout' %}" class="dropdown-item">Deconnexion</a>
               </div>
             </li>
             {% else %}

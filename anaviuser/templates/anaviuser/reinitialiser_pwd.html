@@ -4,7 +4,8 @@
 <!-- redefine the section with adding -->
 {% block content %}
 
-<form style="margin-top: 30px;" action="{% url 'anaviuser:Reinitialise_code' user.email %}" method="POST">
+<form style="margin-top: 30px;" action="{% url 'anaviuser:ppasswordchange' %}" method="POST">
+  {% csrf_token %}
   <div class="input-group mb-3">
     <div class="input-group-prepend " style="border-right-width: 0px;" >
       <i class="fa fa-lock main-color-text input-group-text bg-white "  id="inputGroup-sizing-default" style="border-right-width: 0px;"></i>   
@@ -18,13 +19,14 @@
     </div>
     <input type='password' name='c-password' id='password'  placeholder="Confirm password" class='form-control' style="border-left-width: 0px;"  />
   </div>
+  <input type="text" name="email" readonly="true" value="{{ request.GET.email }}" />
   <div class="row">
     <div class="col-lg-8">
  
       </div>
     <div class="col-lg-4">
         <button type='submit' class='btn second-color text-white container next'>Next</button> 
-      </div>
+    </div>
   </div>
 </form>
  

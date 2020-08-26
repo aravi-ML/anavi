@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from hotel.hotel_service import *
 from comment.comment_service import Comment,CommentService
 from countryapp.models import Country
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from anavi.utility import *
 # Create your views here.
 temp_path_plot="hotel/static/hotel/temp_image/"
@@ -45,14 +45,18 @@ def dashboard(request,token):
     nb_comment=HotelService.count_comment(hotel)
     comment_by_website=HotelService.get_comment_by_website(hotel)
 
-    plt.bar(list(comment_by_website.keys()),list(comment_by_website.values()))
-    name_plot_comment_by_site=get_random_string(20)+".png"
-    plt.savefig(temp_path_plot+name_plot_comment_by_site)
-    plt.close()
+    #plt.bar(list(comment_by_website.keys()),list(comment_by_website.values()))
+    #ame_plot_comment_by_site=get_random_string(20)+".png"
+    #plt.savefig(temp_path_plot+name_plot_comment_by_site)
+    #plt.close()
 
-    context={"id":hotel.id,"nb_comment":nb_comment,"plot_comment_by_site":name_plot_comment_by_site}
+    aspect_stat=HotelService.get_aspect_stat(hotel)
+    group_aspect_stat=HotelService.get_group_aspect_stat(hotel)
+    context={"id":hotel.id,"nb_comment":nb_comment,"aspect_stat":aspect_stat,"aspect_group":group_aspect_stat}
     if(info_most_comment!=None):
         context["web"]=info_most_comment
+    
+    context["hotel"]=hotel
 
     return render(request,"hotel/dashboard_hotel.html",context)
 

@@ -11,6 +11,7 @@ class User(models.Model):
     add_date = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(null=True,blank=True,max_length=25)
     confirm_code=models.PositiveIntegerField(default=0)
+    renitialisation_code=models.CharField(max_length=20,default="")
     confirmed=models.BooleanField(default=False)
     is_admin=models.BooleanField(default=False)
 

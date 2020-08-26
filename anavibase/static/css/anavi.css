@@ -178,3 +178,7 @@ input:focus{
     background-color: #060d3b !important;
     border-radius: 0px !important;
 }
+
+#googglemap{
+    height: 400px !important;
+}

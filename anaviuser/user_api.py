@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.shortcuts import render
 from django.contrib import admin
 from anaviuser.models import * 
@@ -42,3 +42,20 @@ def addUser(request):
     else:
         return render(request,'anaviuser/signup.html')
 
+
+def perform_change_password(request):
+    password=request.POST.get("password","")
+    password_c=request.POST.get("c-password","")
+    email=request.POST.get("email","")
+    if(password!=password_c):
+        return HttpResponse("Password no matching")
+    else:
+        try:
+            user=User.objects.get(email=email)
+            user.password=password_c
+            user.renitialisation_code=""
+            user.save()
+            return render(request,"anaviuser/reitialisation_success.html",{"title":"reset with success"})            
+        except User.DoesNotExist:
+            return HttpResponse("error occured")
+            pass

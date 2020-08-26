@@ -19,7 +19,20 @@
     <div class="row" style="margin-top: 0px; padding:0px !important">
         <div class="col-2 shadow-sm main-color" style="position: fixed; height:100% !important; margin:0px !important">
             <br />
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo/logo_anavi_blanc.png' %}" height="50px" />
+            </a>
             <br />
+            <br />
+            <div class="row">
+                <div class="col-5 text-right">
+                    <img src="{% static 'images/default.png' %}" width="30px" class="rounded" />
+            </div>
+            <div class="col-4 text-left"  style="margin-left:-30px !important">
+                <b>{{ request.session.user.name }}</b>
+            </div>
+            </div>
+            
             <br />    
             <ul class="nav flex-column">
                     <li class="nav-item">
@@ -51,7 +64,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white"><i class="fa fa-sign-out"></i> &nbsp;&nbsp;Logout </a>
+                        <a href="{% url 'anaviuser:logout' %}" class="nav-link text-white"><i class="fa fa-sign-out"></i> &nbsp;&nbsp;Logout </a>
                     </li>
                 </ul>
                 <div class="text-white text-center" style="position: absolute; bottom:8px;">

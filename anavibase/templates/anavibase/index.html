@@ -5,7 +5,7 @@
 
 {% block content %}
 <br />
-<div class='container-fluid main-color '>
+<div class='container-fluid main-color' style="margin-top: -50px;">
   <br />
   <br />
   <br />
@@ -124,19 +124,17 @@
     </div>
   </div>
   <br />
-  <div class='row container'>
-     <h3 >
-         <span class='montserrat'>
-         Contact us</span>
-     </h3>
+  <div class='row container-fluid main-color mb-5 p-5 text-white'>
      <div class='col-lg-5 '>
+      <h3><span class='montserrat'>Contact us</span></h3>
      <form action="" method = "POST">
+       {% csrf_token %}
        <div class="input-group mb-3 inputloginGroup">
-          <i class="fas fa-phone-alt iconLogin" style="border-right-width: 0px;"></i> 
+          <i class="fa fa-phone iconLogin" style="border-right-width: 0px;"></i> 
           <input type='text' name='telephone' id='telephone' placeholder="Enter phone number" class='form-control inputLogin' style="border-left-width: 0px;"  />
         </div>
         <div class="input-group mb-3 inputloginGroup">
-          <i class="fas fa-phone-alt iconLogin" style="border-right-width: 0px;"></i> 
+          <i class="fa fa-envelope iconLogin" style="border-right-width: 0px;"></i> 
           <input type='text' name='mail' id='mail' placeholder="Enter your mail" class='form-control inputLogin' style="border-left-width: 0px;"  />
         </div>
         <div class="input-group mb-3 inputloginGroup">
@@ -147,7 +145,7 @@
            <div class='col-lg-7 '>
             </div>
             <div class='col-lg-5 '>
-               <button type='submit' class='btn main-color text-white container'>Send message </button>     
+               <button type='submit' class='btn second-color shadow text-white container'>Send message </button>     
             </div>
             
         </div>

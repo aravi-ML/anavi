@@ -1,28 +1,172 @@
-{% extends 'base.html' %}
+{% extends 'hotel/base_hotel_manage.html' %}
 {% load static %}
 {% block content %}
 <br />
-<div class='container stat-card'>
-    <div class='row'>
-        <div class="col-6">
-            <h3>Comment by site</h3>
-            <img src="{% static 'hotel/temp_image/' %}{{ plot_comment_by_site }}" width="100%" />
-        </div>
-        <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
-            <div class="card border-0 shadow">
-                <h3>{{ nb_comment }}</h3>
-                Feed backs
-            </div>
-        </div>
+<script type="text/javascript">
+    $(function(){
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+          }
 
-        {% if web %}
-        <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
-            <div class="card border-0 shadow">
-                <h3>{{ web.nb }}</h3>
-                Feedbacks on <a href="{{ web.website.link }}">{{web.website.name }}</a>
+        $("#h-stat-table").DataTable();
+
+        $.get("{% url 'hotel:hotelstat' hotel.token %}",{},function(result){
+            var label_group_comment=[];
+            var value_group_comment=[];
+            var color_group_comment=[];
+
+            for(key in result["group_comment"]){
+                label_group_comment.push(key);
+                value_group_comment.push(result["group_comment"][key]);
+                color_group_comment.push(getRandomColor());
+            }
+            console.log(label_group_comment)
+            console.log(value_group_comment)
+            var ctx_group_comment=document.getElementById("chart-group-comment").getContext("2d");
+            var chart_group_comment=new Chart(ctx_group_comment,{
+                data:{datasets:[
+                        {
+                            label:"Comment by Hotel",
+                            backgroundColor:color_group_comment,
+                            data:value_group_comment
+                        }
+                    ],
+                labels:label_group_comment},
+                type:"bar"
+            });
+            for(key in result["group_aspect"]){
+                var temp=result["group_aspect"][key];
+                
+                var ctx=document.getElementById(key).getContext("2d");
+                var chart=new Chart(ctx,{
+                    data:{datasets: [
+                        {
+                            label:"Sentimensts",
+                            backgroundColor:["#89dbab","gray","#ff9b9b"],
+                            data: [temp["positive"],temp["neutral"], temp["negative"]]
+                        }
+                    ],
+                    labels:["Positive","neutral","negatif"]
+                    },
+                    type:"pie",
+                });
+            }
+            
+            
+        },"json")
+    })
+   
+</script>
+<div class='container-fluid stat-card'>
+    <ul class="nav nav-pills border-bottom" role="tablist" id="tab-h-stat">
+        <li class="nav-item">
+            <a role="tab" data-toggle="tab" class="nav-link active" id="general-h-stat-link" href="#general-h-stat-tab">General Stat</a>
+        </li>
+        <li class="nav-item">
+            <a role="tab" data-toggle="tab" class="nav-link" id="general-h-aspect-link" href="#general-h-aspect-tab">Detail Stat</a>
+        </li>
+        <li class="nav-item">
+            <a role="tab" data-toggle="tab" class="nav-link" id="general-h-group-link" href="#general-h-group-tab">Grouped Stat</a>
+        </li>
+        <li class="nav-item">
+            <a role="tab" data-toggle="tab" class="nav-link" id="general-h-graph-link" href="#general-h-graph-tab">Aspect Graph</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <!-- Begin general statistique -->
+        <div role="tabpanel" class="tab-pane show active" id="general-h-stat-tab" aria-labelledby="general-h-stat-link">
+            <div class='row'>
+                <div class="col-6">
+                    <h3>Comment by site</h3>
+                    <canvas id="chart-group-comment"></canvas>
+                </div>
+                <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
+                    <div class="card border-0 shadow">
+                        <h3>{{ nb_comment }}</h3>
+                        Feed backs
+                    </div>
+                </div>
+        
+                {% if web %}
+                <div class='col-lg-2 col-md-3 col-sm-6 col-12'>
+                    <div class="card border-0 shadow">
+                        <h3>{{ web.nb }}</h3>
+                        Feedbacks on <a href="{{ web.website.link }}">{{web.website.name }}</a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
-        {% endif %}
+        <!-- End general statistique -->
+        <div role="tabpanel" class="tab-pane" id="general-h-aspect-tab" aria-labelledby="general-h-aspect-link">
+            <div class="row">
+                <div class="col-lg-8 pr-2">
+                    <h2>Detail Aspect Statistique</h2>
+                    <table class="table table-striped table-bordered" id="h-stat-table" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="display: none;">Aspect Ascii</th>
+                                <th>Aspect Name</th>
+                                <th>Positive(%)</th>
+                                <th>Neutral(%)</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for aspect,val in aspect_stat.items  %}
+                                <tr>
+                                    <td style="display: none;">{{ aspect }}</td>
+                                    <td>{{ val.name }}</td>
+                                    <td>{{ val.positive }}({{val.pos_percent}}%)</td>
+                                    <td>{{ val.neutral }}({{val.neu_percent}}%)</td>
+                                    <td>{{ val.total }}</td>
+                                </tr>
+                              
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- End aspect detail stat -->
+        <div role="tabpanel" class="tab-pane" id="general-h-group-tab" aria-labelledby="general-h-group-link">
+            <div class="row">
+                <div class="col-lg-12 p-1">
+                    <h1>Target aspect details</h1>
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Positive</th>
+                                <th>Neutral</th>
+                                <th>Total</th>
+                                <th>Graph</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key,gp in aspect_group.items  %}
+                                <tr>
+                                    <td>{{ gp.name }}</td>
+                                    <td>{{ gp.positive }} ({{ gp.pos_percent }}%)</td>
+                                    <td>{{ gp.neutral }} ({{ gp.neg_percent }}%)</td>
+                                    <td>{{ gp.total }}</td>
+                                    <td><canvas id="{{ gp.name_i }}"></canvas></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <!-- End general aspect detail stat-->
+        <div role="tabpanel" class="tab-pane" id="general-h-graph-tab" aria-labelledby="general-h-graph-link">Graph</div>
     </div>
+
 </div>
 {% endblock content %}

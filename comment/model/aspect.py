@@ -13,9 +13,11 @@ class Aspect(models.Model):
     comment=models.ForeignKey(Comment,on_delete=models.CASCADE)
     start_to=models.PositiveIntegerField(default=0)
     end_to=models.PositiveIntegerField(default=0)
+    polarity=models.CharField(max_length=200,default="neutral")
+    category=models.CharField(max_length=200,default="general")
 
 class AspectAdmin(admin.ModelAdmin):
-    display_list=["name","comment",'start_to','end_to']
-    search_fields=["name","comment"]
+    display_list=["name","comment",'start_to','end_to',"polarity"]
+    search_fields=["name","comment","polarity"]
 
 admin.site.register(Aspect,AspectAdmin)

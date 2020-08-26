@@ -1,2 +1,18 @@
 {% extends "base-user.html" %}
 {% load static %}
+{% block content %}
+
+  <form action="{% url 'anaviuser:Reinitialize' %}" method="get">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend " style="border-right-width: 0px;" >
+          <i class="fa fa-at main-color-text input-group-text bg-white "  id="inputGroup-sizing-default" style="border-right-width: 0px;"></i>   
+        </div>
+        <input type='text'  name='code' id='code' placeholder="Enter your code" class='form-control' style="border-left-width: 0px;"  />
+      </div>
+      <input type="hidden" name="email" readonly="true" value="{{ email }}" />
+      <div class="col-lg-4">
+        <button type='submit' class='btn second-color text-white container next'>Next</button> 
+      </div>
+  </form>
+
+{% endblock content %}

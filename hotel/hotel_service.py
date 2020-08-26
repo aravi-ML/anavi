@@ -3,6 +3,9 @@ from hotel.model.hotel import *
 from hotel.model.hotel_website import *
 from .hotel_website_service import HotelWebSiteService
 from comment.comment_service import Comment,CommentService
+from comment.models import Aspect
+
+import unidecode
 
 class HotelService:
     """This class is to make all operation about hotel
@@ -87,4 +90,44 @@ class HotelService:
             website=WebSite.objects.get(id=result["website"])
             final_result[website.name]=result["nb"]
         return final_result
-            
+    
+    @classmethod
+    def get_aspect_stat(cls,hotel):
+        """function all the stat by aspect on one hotel """
+        comment_list=hotel.comment_set.all()
+        all_aspect=Aspect.objects.filter(comment__in=comment_list).values("name_fr","polarity").annotate(nb=models.Count("polarity"))
+        #maintenant nous devons regrouper les statistique par nom
+        stata={}
+        for aspect in all_aspect:
+            #On essaye d'acceder a la cle si cela ne marche on cree un dictionnaire de la cle
+            name_i=unidecode.unidecode(aspect["name_fr"])
+            if(stata.get(name_i,None)==None):
+                stata[name_i]={"negative":0,"positive":0,"neutral":0,"total":0,"name":aspect["name_fr"]}
+            stata[name_i][aspect["polarity"]]=aspect["nb"]
+            stata[name_i]["total"]+=aspect["nb"]
+            stata[name_i]["pos_percent"]=round((stata[name_i]["positive"]*100)/stata[name_i]["total"],2)
+            stata[name_i]["neg_percent"]=round((stata[name_i]["negative"]*100)/stata[name_i]["total"],2)
+            stata[name_i]["neu_percent"]=round((stata[name_i]["neutral"]*100)/stata[name_i]["total"],2)
+        return stata
+    
+    @classmethod
+    def get_group_aspect_stat(cls,hotel):
+        """return general stat of hotel by aspect category"""
+        hotel=Hotel(id=hotel.id)
+        comment_all=hotel.comment_set.all()
+        aspect_stat=Aspect.objects.filter(comment__in=comment_all).values("category","polarity").annotate(nb=models.Count("polarity"))
+        stata={}
+        for aspect in aspect_stat:
+            name_i=unidecode.unidecode(aspect["category"])
+            if(stata.get(name_i,None)==None):
+                stata[name_i]={"name_i":name_i,"name":aspect["category"],"positive":0,"neutral":0,"negative":0,"total":0}
+            stata[name_i][aspect["polarity"]]=aspect["nb"]
+            stata[name_i]["total"]+=aspect["nb"]
+            stata[name_i]["pos_percent"]=round((stata[name_i]["positive"]*100)/stata[name_i]["total"],2)
+            stata[name_i]["neg_percent"]=round((stata[name_i]["negative"]*100)/stata[name_i]["total"],2)
+            stata[name_i]["neu_percent"]=round((stata[name_i]["neutral"]*100)/stata[name_i]["total"],2)
+
+        return stata
+
+
+        return aspect_stat

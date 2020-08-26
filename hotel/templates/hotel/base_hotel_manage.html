@@ -1,0 +1,78 @@
+{% load static %}
+<html>
+    <head>
+        <title>Hotel Manage</title>
+        {% include "base_css.html" %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    </head>
+    <body>
+        <style type="text/css">
+            .nav-link.active{
+                background-color: brown !important;
+                border-radius: 0px !important;
+                color: white !important;
+            }
+            .nav.nav-pills .nav-link{
+                color: brown;
+            }
+        </style>
+        <div class="container-fluid">
+            <div class="row p-0">
+                <div class="col-2 secnd-color text-white" style="position: fixed; top:0px; height:100%; background-color:brown;
+                ">
+                    <div class="">
+                        <br />
+                        <br />
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'images/logo/logo_anavi_blanc.png' %}" height="50px" />
+                        </a>
+                        <br /><br />
+
+                        <div class="row">
+                            <div class="col-5 text-right">
+                                
+                                    <img src="{% static 'images/default.png' %}" width="30px" class="rounded" />
+                               
+                    
+                            </div>
+                            <div class="col-4 text-left"  style="margin-left:-30px !important">
+                                <b>{{ request.session.user.name }}</b>
+                            </div>
+                            <br />
+                            <br >
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a href="#" class="text-white nav-link">General Statistique</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="text-white nav-link">General Statistique</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="text-white nav-link">General Statistique</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="text-white nav-link">General Statistique</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="text-white nav-link">General Statistique</a>
+                                </li>
+                            </ul>
+                            <div class="text-center" style="position: absolute; bottom:18px; text-align:center;">
+                                <div class="text-center ml-3">
+                                   <center><b>copyright@aravi-mlUy1 2020</b></center> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col offset-2">
+                    {% block content %}
+                      
+                    {% endblock content %}
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
